@@ -1,6 +1,6 @@
 # Meat for Kings
 
-Grill product catalog web app. 871 products (gas + pellet grills) scraped from BBQGuys.com.
+Grill product catalog web app **in Spanish**. 1,505 products across 11 categories scraped from BBQGuys.com and translated to Spanish.
 
 **Live site:** https://meat-for-kings.onrender.com/
 
@@ -32,7 +32,7 @@ The SQLite DB is read-only at runtime and ships with each deploy. Render's free 
 | `templates/index.html` | Jinja2 shell — header, sidebar, grid, modal |
 | `static/js/app.js` | IIFE-wrapped SPA — state, API calls, rendering, events |
 | `static/css/style.css` | Full design system with CSS custom properties |
-| `catalog.db` | SQLite, single `products` table, read-only at runtime |
+| `catalog-es.db` | SQLite, single `products` table, Spanish-translated, read-only at runtime |
 | `render.yaml` | Render Blueprint — build/start commands, free tier |
 | `scrape.py` | Playwright scraper (standalone, do not modify) |
 
@@ -40,9 +40,11 @@ The SQLite DB is read-only at runtime and ships with each deploy. Render's free 
 
 Single `products` table. Prices are **integers in cents** (e.g. 49999 = $499.99). `bullet_points` is a JSON-encoded string array. `product_url` is relative (needs `https://www.bbqguys.com` prefix). `id` is TEXT not INTEGER.
 
-**NULL prevalence:** 72.7% have NULL `fuel_type` and `stock_status`. 85% have NULL `rating`. 73% have NULL `description`. Handle NULLs gracefully everywhere.
+**NULL prevalence:** 62.8% have NULL `fuel_type`. 69% have NULL `rating`. 62.8% have NULL `description`. Handle NULLs gracefully everywhere.
 
-Six indexes exist: `idx_brand`, `idx_price`, `idx_fuel`, `idx_stock`, `idx_rating`, `idx_name`.
+**Language:** All product names, descriptions, bullet points, categories, and fuel types are in Spanish. Stock status values remain English (`IN_STOCK`, `OUT_OF_STOCK`, `LIMITED_SUPPLY`) in the DB; the UI displays them in Spanish.
+
+Seven indexes exist: `idx_brand`, `idx_price`, `idx_fuel`, `idx_stock`, `idx_rating`, `idx_name`, `idx_category`.
 
 ## API Endpoints
 
@@ -79,7 +81,7 @@ Warm luxury palette with gold accent (`#C8963E`). Fonts: Playfair Display (headi
 
 ## Do Not
 
-- Modify `scrape.py` or `catalog.db` directly
+- Modify `scrape.py` or `catalog-es.db` directly
 - Add a build step or framework — this is intentionally vanilla
 - Remove the `escapeHtml()` / `sanitizeHtml()` calls (XSS protection)
 - Use port 5000 (blocked by macOS AirPlay Receiver)

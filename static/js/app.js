@@ -160,7 +160,7 @@
   function productCard(p) {
     const savingsNum = p.savings_percent ? parseInt(p.savings_percent, 10) : 0;
     const savingsBadge = savingsNum > 0
-      ? `<span class="savings-badge">Save ${escapeHtml(p.savings_percent)}</span>`
+      ? `<span class="savings-badge">Ahorra ${escapeHtml(p.savings_percent)}</span>`
       : '';
 
     const retailPrice = p.price_retail && p.price_retail !== p.price_current
@@ -168,20 +168,20 @@
       : '';
 
     const savingsText = savingsNum > 0 && p.savings_formatted
-      ? `<span class="price-savings">Save ${escapeHtml(p.savings_formatted)}</span>`
+      ? `<span class="price-savings">Ahorra ${escapeHtml(p.savings_formatted)}</span>`
       : '';
 
     let footerBadges = '';
     if (p.is_free_shipping) {
-      footerBadges += '<span class="badge badge-shipping">Free Shipping</span>';
+      footerBadges += '<span class="badge badge-shipping">Envío Gratis</span>';
     }
     if (p.fuel_type) {
       footerBadges += `<span class="badge badge-fuel">${escapeHtml(p.fuel_type)}</span>`;
     }
     if (p.stock_status === 'IN_STOCK') {
-      footerBadges += '<span class="badge badge-stock">In Stock</span>';
+      footerBadges += '<span class="badge badge-stock">En Stock</span>';
     } else if (p.stock_status === 'OUT_OF_STOCK') {
-      footerBadges += '<span class="badge badge-oos">Out of Stock</span>';
+      footerBadges += '<span class="badge badge-oos">Agotado</span>';
     }
 
     return `
@@ -331,7 +331,7 @@
 
   function updateResultCount() {
     const n = state.totalProducts;
-    dom.resultCount.textContent = `${n.toLocaleString()} grill${n !== 1 ? 's' : ''}`;
+    dom.resultCount.textContent = `${n.toLocaleString()} parrilla${n !== 1 ? 's' : ''}`;
   }
 
   // -----------------------------------------------------------------------
@@ -395,10 +395,10 @@
       tags.push({ label: `${min} – ${max}`, type: 'price' });
     }
     if (state.filters.inStock) {
-      tags.push({ label: 'In Stock', type: 'inStock' });
+      tags.push({ label: 'En Stock', type: 'inStock' });
     }
     if (state.filters.hasRating) {
-      tags.push({ label: 'Has Rating', type: 'hasRating' });
+      tags.push({ label: 'Con Valoración', type: 'hasRating' });
     }
 
     dom.activeFilters.hidden = tags.length === 0;
@@ -406,7 +406,7 @@
       .map(
         (t) => `<span class="filter-tag" data-type="${t.type}" data-value="${escapeHtml(t.value || '')}">
           ${escapeHtml(t.label)}
-          <button class="tag-remove" aria-label="Remove filter">&times;</button>
+          <button class="tag-remove" aria-label="Quitar filtro">&times;</button>
         </span>`
       )
       .join('');
@@ -480,7 +480,7 @@
   async function openModal(productId) {
     lastFocusedElement = document.activeElement;
     dom.modal.hidden = false;
-    dom.modalBody.innerHTML = '<div style="padding:60px;text-align:center;color:var(--text-tertiary)">Loading...</div>';
+    dom.modalBody.innerHTML = '<div style="padding:60px;text-align:center;color:var(--text-tertiary)">Cargando...</div>';
 
     // trigger reflow for animation
     void dom.modal.offsetHeight;
@@ -490,13 +490,13 @@
     try {
       const p = await api.getProduct(productId);
       if (p.error) {
-        dom.modalBody.innerHTML = '<div style="padding:40px;text-align:center;">Product not found.</div>';
+        dom.modalBody.innerHTML = '<div style="padding:40px;text-align:center;">Producto no encontrado.</div>';
         return;
       }
       renderModal(p);
     } catch (err) {
       console.error('Failed to load product:', err);
-      dom.modalBody.innerHTML = '<div style="padding:40px;text-align:center;">Failed to load product.</div>';
+      dom.modalBody.innerHTML = '<div style="padding:40px;text-align:center;">Error al cargar el producto.</div>';
     }
   }
 
@@ -513,7 +513,7 @@
             <span class="stars-empty">\u2605\u2605\u2605\u2605\u2605</span>
             <span class="stars-filled" style="width:${pct}%">\u2605\u2605\u2605\u2605\u2605</span>
           </span>
-          <span class="star-text">${p.rating.toFixed(1)} out of 5${p.review_count ? ` (${p.review_count} review${p.review_count !== 1 ? 's' : ''})` : ''}</span>
+          <span class="star-text">${p.rating.toFixed(1)} de 5${p.review_count ? ` (${p.review_count} reseña${p.review_count !== 1 ? 's' : ''})` : ''}</span>
         </div>`;
     }
 
@@ -522,23 +522,23 @@
       ? `<span class="modal-price-retail">${formatPrice(p.price_retail)}</span>`
       : '';
     const savingsHtml = savingsNum > 0 && p.savings_formatted
-      ? `<span class="modal-savings">Save ${escapeHtml(p.savings_formatted)} (${escapeHtml(p.savings_percent)})</span>`
+      ? `<span class="modal-savings">Ahorra ${escapeHtml(p.savings_formatted)} (${escapeHtml(p.savings_percent)})</span>`
       : '';
 
     // Badges
     let badges = '';
-    if (p.is_free_shipping) badges += '<span class="badge badge-shipping">Free Shipping</span>';
+    if (p.is_free_shipping) badges += '<span class="badge badge-shipping">Envío Gratis</span>';
     if (p.fuel_type) badges += `<span class="badge badge-fuel">${escapeHtml(p.fuel_type)}</span>`;
-    if (p.stock_status === 'IN_STOCK') badges += '<span class="badge badge-stock">In Stock</span>';
-    else if (p.stock_status === 'OUT_OF_STOCK') badges += '<span class="badge badge-oos">Out of Stock</span>';
-    if (p.ships_in) badges += `<span class="badge badge-fuel">Ships in ${escapeHtml(p.ships_in)}</span>`;
+    if (p.stock_status === 'IN_STOCK') badges += '<span class="badge badge-stock">En Stock</span>';
+    else if (p.stock_status === 'OUT_OF_STOCK') badges += '<span class="badge badge-oos">Agotado</span>';
+    if (p.ships_in) badges += `<span class="badge badge-fuel">Envío en ${escapeHtml(p.ships_in)}</span>`;
 
     // Description
     let descHtml = '';
     if (p.description) {
       descHtml = `
         <div class="modal-section">
-          <h4 class="modal-section-title">Description</h4>
+          <h4 class="modal-section-title">Descripción</h4>
           <div class="modal-description">${sanitizeHtml(p.description)}</div>
         </div>`;
     }
@@ -549,24 +549,24 @@
       const items = p.bullet_points.map((b) => `<li>${escapeHtml(b)}</li>`).join('');
       bulletsHtml = `
         <div class="modal-section">
-          <h4 class="modal-section-title">Key Features</h4>
+          <h4 class="modal-section-title">Características Principales</h4>
           <ul class="modal-bullets">${items}</ul>
         </div>`;
     }
 
     // Specs table
     const specs = [];
-    if (p.brand) specs.push(['Brand', p.brand]);
-    if (p.model_number) specs.push(['Model', p.model_number]);
-    if (p.category) specs.push(['Category', p.category]);
-    if (p.fuel_type) specs.push(['Fuel Type', p.fuel_type]);
+    if (p.brand) specs.push(['Marca', p.brand]);
+    if (p.model_number) specs.push(['Modelo', p.model_number]);
+    if (p.category) specs.push(['Categoría', p.category]);
+    if (p.fuel_type) specs.push(['Combustible', p.fuel_type]);
 
     let specsHtml = '';
     if (specs.length > 0) {
       const rows = specs.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(v)}</td></tr>`).join('');
       specsHtml = `
         <div class="modal-section">
-          <h4 class="modal-section-title">Specifications</h4>
+          <h4 class="modal-section-title">Especificaciones</h4>
           <table class="modal-specs">${rows}</table>
         </div>`;
     }
@@ -578,7 +578,7 @@
     }
     const ctaHtml = productUrl
       ? `<a href="${escapeHtml(productUrl)}" target="_blank" rel="noopener noreferrer" class="modal-cta">
-          View on BBQGuys
+          Ver en BBQGuys
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </a>`
       : '';

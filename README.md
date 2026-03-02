@@ -1,20 +1,21 @@
 # Meat for Kings
 
-A professional web catalog for browsing **802 gas grill products** scraped from BBQGuys.com. Warm luxury design, fast filtering, infinite scroll, and detailed product modals.
+A professional web catalog **in Spanish** for browsing **1,505 grill products** across 11 categories, scraped from BBQGuys.com and translated to Spanish. Warm luxury design, fast filtering, infinite scroll, and detailed product modals.
 
 **Live:** https://meat-for-kings.onrender.com/
 
-![Stack](https://img.shields.io/badge/Flask-SQLite-blue) ![Products](https://img.shields.io/badge/Products-802-gold) ![Brands](https://img.shields.io/badge/Brands-54-green)
+![Stack](https://img.shields.io/badge/Flask-SQLite-blue) ![Products](https://img.shields.io/badge/Products-1505-gold) ![Brands](https://img.shields.io/badge/Brands-108-green) ![Language](https://img.shields.io/badge/Idioma-Español-red)
 
 ## Features
 
-- **Filterable catalog** — filter by brand (54), fuel type (5), price range, in-stock status, and rating
+- **Filterable catalog** — filter by brand (108), category (11), fuel type (8), price range, in-stock status, and rating
 - **Full-text search** with debounced input and request cancellation
 - **Infinite scroll** — loads 36 products at a time via IntersectionObserver
 - **Product detail modals** — full descriptions, bullet points, specs, and direct links to BBQGuys
 - **Responsive design** — 4-column → 1-column grid, mobile slide-out filter panel
 - **Lazy image loading** — images load as cards scroll into view
 - **Skeleton loading states** — animated placeholders during data fetches
+- **Full Spanish UI** — all interface text, product names, descriptions, and categories in Spanish
 - **No build step** — vanilla HTML/CSS/JS, zero dependencies beyond Flask
 
 ## Quick Start
@@ -48,17 +49,17 @@ Hosted on [Render](https://render.com) (free tier). Every push to `main` trigger
 
 ```
 Meat for Kings/
-├── app.py                  # Flask server + JSON API (218 lines)
-├── catalog.db              # SQLite database (802 products, ~1.3 MB)
+├── app.py                  # Flask server + JSON API
+├── catalog-es.db           # SQLite database (1,505 products, Spanish)
 ├── scrape.py               # Playwright scraper (standalone)
 ├── render.yaml             # Render deployment config
 ├── requirements.txt        # flask, gunicorn
 ├── CLAUDE.md               # Claude Code context file
 ├── static/
-│   ├── css/style.css       # Design system (1447 lines)
-│   └── js/app.js           # SPA frontend (850 lines)
+│   ├── css/style.css       # Design system
+│   └── js/app.js           # SPA frontend (Spanish UI)
 └── templates/
-    └── index.html          # Page shell (179 lines)
+    └── index.html          # Page shell (Spanish UI)
 ```
 
 ## API Reference
@@ -70,10 +71,11 @@ Returns available filter options. Called once on page load.
 ```json
 {
   "brands": ["Blaze", "Napoleon", "Weber Grills", "..."],
-  "fuel_types": ["Charcoal", "Electric", "Natural Gas", "Pellets", "Propane"],
+  "fuel_types": ["Carbón", "Eléctrico", "Gas Natural", "Pellets", "Propano", "..."],
+  "categories": ["Parrillas de Gas", "Parrillas de Pellets", "Ahumadores", "..."],
   "price_min": 8900,
   "price_max": 5657500,
-  "total": 802
+  "total": 1505
 }
 ```
 
@@ -97,10 +99,10 @@ Paginated product list with filtering and sorting.
 ```json
 {
   "products": [{ "id": "3105425", "name": "...", "brand": "...", "price_current": 236000, "..." }],
-  "total": 802,
+  "total": 1505,
   "page": 1,
   "per_page": 36,
-  "total_pages": 23
+  "total_pages": 42
 }
 ```
 
@@ -128,8 +130,9 @@ Full product detail including parsed bullet points.
 ## Data Notes
 
 - **Prices are stored in cents** (integer). $499.99 = `49999`.
-- **72.7% of products** have NULL `fuel_type` and `stock_status` (not enriched by the scraper's secondary data sources).
-- **85% lack ratings** — the UI hides stars entirely rather than showing 0.
+- **62.8% of products** have NULL `fuel_type` (not enriched by the scraper's secondary data sources).
+- **69% lack ratings** — the UI hides stars entirely rather than showing 0.
+- **All text is in Spanish** — product names, descriptions, bullet points, categories, and fuel types. Stock status codes remain English in the DB (`IN_STOCK`, etc.) but display in Spanish in the UI.
 - **Product URLs are relative** — the app prepends `https://www.bbqguys.com`.
 - **Descriptions contain HTML** — sanitized with a tag allowlist before rendering.
 - **`bullet_points`** is stored as a JSON string in SQLite, parsed to an array by the API.
@@ -138,7 +141,7 @@ Full product detail including parsed bullet points.
 
 | Decision | Rationale |
 |----------|-----------|
-| No framework | 802 products doesn't need React. Vanilla JS keeps it fast and dependency-free. |
+| No framework | 1,505 products doesn't need React. Vanilla JS keeps it fast and dependency-free. |
 | Prices in cents | Avoids floating-point rounding. Standard practice for currency. |
 | Port 8000 | macOS AirPlay Receiver blocks port 5000. |
 | IntersectionObserver | Native API for both infinite scroll and lazy images. No scroll event listeners. |

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meat for Kings — Premium Grill Catalog</title>
+  <title>Meat for Kings — Catálogo Premium de Parrillas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
@@ -24,25 +24,25 @@
             <circle cx="11" cy="11" r="8"/>
             <line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
-          <input type="text" id="search-input" class="search-input" placeholder="Search grills..." autocomplete="off">
-          <button id="search-clear" class="search-clear" aria-label="Clear search" hidden>&times;</button>
+          <input type="text" id="search-input" class="search-input" placeholder="Buscar parrillas..." autocomplete="off">
+          <button id="search-clear" class="search-clear" aria-label="Limpiar búsqueda" hidden>&times;</button>
         </div>
 
         <span id="result-count" class="result-count"></span>
 
         <div class="sort-wrapper">
-          <label for="sort-select" class="sr-only">Sort by</label>
+          <label for="sort-select" class="sr-only">Ordenar por</label>
           <select id="sort-select" class="sort-select">
-            <option value="price_asc">Price: Low → High</option>
-            <option value="price_desc">Price: High → Low</option>
-            <option value="name_asc">Name: A → Z</option>
-            <option value="rating_desc">Top Rated</option>
-            <option value="savings_desc">Biggest Savings</option>
+            <option value="price_asc">Precio: Menor → Mayor</option>
+            <option value="price_desc">Precio: Mayor → Menor</option>
+            <option value="name_asc">Nombre: A → Z</option>
+            <option value="rating_desc">Mejor Valorados</option>
+            <option value="savings_desc">Mayor Ahorro</option>
           </select>
         </div>
       </div>
 
-      <button id="mobile-filter-btn" class="mobile-filter-btn" aria-label="Toggle filters">
+      <button id="mobile-filter-btn" class="mobile-filter-btn" aria-label="Mostrar filtros">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/>
           <line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/>
@@ -50,7 +50,7 @@
           <line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/>
           <line x1="17" y1="16" x2="23" y2="16"/>
         </svg>
-        <span>Filters</span>
+        <span>Filtros</span>
       </button>
     </div>
   </header>
@@ -64,35 +64,35 @@
     <!-- FILTER SIDEBAR -->
     <aside id="filter-sidebar" class="filter-sidebar">
       <div class="sidebar-header">
-        <h2 class="sidebar-title">Filters</h2>
-        <button id="sidebar-close" class="sidebar-close" aria-label="Close filters">&times;</button>
+        <h2 class="sidebar-title">Filtros</h2>
+        <button id="sidebar-close" class="sidebar-close" aria-label="Cerrar filtros">&times;</button>
       </div>
 
       <!-- Active filter tags -->
       <div id="active-filters" class="active-filters" hidden>
         <div class="active-filters-header">
-          <span class="active-filters-label">Active Filters</span>
-          <button id="clear-all-filters" class="clear-all-btn">Clear All</button>
+          <span class="active-filters-label">Filtros Activos</span>
+          <button id="clear-all-filters" class="clear-all-btn">Limpiar Todo</button>
         </div>
         <div id="filter-tags" class="filter-tags"></div>
       </div>
 
       <!-- Price Range -->
       <div class="filter-group">
-        <h3 class="filter-heading">Price Range</h3>
+        <h3 class="filter-heading">Rango de Precio</h3>
         <div class="price-inputs">
           <div class="price-field">
             <span class="price-symbol">$</span>
-            <input type="number" id="min-price" class="price-input" placeholder="Min">
+            <input type="number" id="min-price" class="price-input" placeholder="Mín">
           </div>
           <span class="price-separator">—</span>
           <div class="price-field">
             <span class="price-symbol">$</span>
-            <input type="number" id="max-price" class="price-input" placeholder="Max">
+            <input type="number" id="max-price" class="price-input" placeholder="Máx">
           </div>
         </div>
         <div class="price-presets">
-          <button class="preset-btn" data-min="0" data-max="50000">Under $500</button>
+          <button class="preset-btn" data-min="0" data-max="50000">Menos de $500</button>
           <button class="preset-btn" data-min="50000" data-max="100000">$500–$1K</button>
           <button class="preset-btn" data-min="100000" data-max="300000">$1K–$3K</button>
           <button class="preset-btn" data-min="300000" data-max="">$3K+</button>
@@ -101,27 +101,27 @@
 
       <!-- Grill Type -->
       <div class="filter-group">
-        <h3 class="filter-heading">Grill Type</h3>
+        <h3 class="filter-heading">Tipo de Parrilla</h3>
         <div id="category-list" class="checkbox-list"></div>
       </div>
 
       <!-- Fuel Type -->
       <div class="filter-group">
-        <h3 class="filter-heading">Fuel Type</h3>
+        <h3 class="filter-heading">Tipo de Combustible</h3>
         <div id="fuel-type-list" class="checkbox-list"></div>
       </div>
 
       <!-- Toggles -->
       <div class="filter-group">
         <label class="toggle-row">
-          <span class="toggle-label">In Stock Only</span>
+          <span class="toggle-label">Solo En Stock</span>
           <div class="toggle-switch">
             <input type="checkbox" id="in-stock-toggle">
             <span class="toggle-slider"></span>
           </div>
         </label>
         <label class="toggle-row">
-          <span class="toggle-label">Has Rating</span>
+          <span class="toggle-label">Con Valoración</span>
           <div class="toggle-switch">
             <input type="checkbox" id="has-rating-toggle">
             <span class="toggle-slider"></span>
@@ -147,9 +147,9 @@
           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           <line x1="8" y1="11" x2="14" y2="11"/>
         </svg>
-        <h2 class="empty-title">No grills found</h2>
-        <p class="empty-text">Try adjusting your filters or search terms.</p>
-        <button id="empty-clear-filters" class="empty-clear-btn">Clear All Filters</button>
+        <h2 class="empty-title">No se encontraron parrillas</h2>
+        <p class="empty-text">Intenta ajustar tus filtros o términos de búsqueda.</p>
+        <button id="empty-clear-filters" class="empty-clear-btn">Limpiar Todos los Filtros</button>
       </div>
     </main>
   </div>
@@ -157,7 +157,7 @@
   <!-- ===== PRODUCT DETAIL MODAL ===== -->
   <div id="product-modal" class="modal-overlay" hidden>
     <div class="modal-content" role="dialog" aria-modal="true">
-      <button id="modal-close" class="modal-close" aria-label="Close">&times;</button>
+      <button id="modal-close" class="modal-close" aria-label="Cerrar">&times;</button>
       <div id="modal-body" class="modal-body">
         <!-- Populated by JS -->
       </div>
@@ -165,7 +165,7 @@
   </div>
 
   <!-- ===== BACK TO TOP ===== -->
-  <button id="back-to-top" class="back-to-top" aria-label="Back to top" hidden>
+  <button id="back-to-top" class="back-to-top" aria-label="Volver arriba" hidden>
     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="18 15 12 9 6 15"/>
     </svg>

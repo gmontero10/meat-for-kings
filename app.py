@@ -7,7 +7,7 @@ from pathlib import Path
 from flask import Flask, g, jsonify, render_template, request
 
 app = Flask(__name__)
-DB_PATH = Path(__file__).parent / "catalog.db"
+DB_PATH = Path(__file__).parent / "catalog-es.db"
 
 
 # ---------------------------------------------------------------------------
