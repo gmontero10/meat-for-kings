@@ -41,6 +41,7 @@ def ensure_indexes():
         "CREATE INDEX IF NOT EXISTS idx_stock ON products(stock_status)",
         "CREATE INDEX IF NOT EXISTS idx_rating ON products(rating)",
         "CREATE INDEX IF NOT EXISTS idx_name ON products(name)",
+        "CREATE INDEX IF NOT EXISTS idx_category ON products(category)",
     ]
     for stmt in indexes:
         db.execute(stmt)
@@ -75,6 +76,13 @@ def api_filters():
         ).fetchall()
     ]
 
+    categories = [
+        r[0]
+        for r in db.execute(
+            "SELECT DISTINCT category FROM products WHERE category IS NOT NULL ORDER BY category"
+        ).fetchall()
+    ]
+
     row = db.execute(
         "SELECT MIN(price_current) AS min_price, MAX(price_current) AS max_price, COUNT(*) AS total "
         "FROM products"
@@ -84,6 +92,7 @@ def api_filters():
         {
             "brands": brands,
             "fuel_types": fuel_types,
+            "categories": categories,
             "price_min": row["min_price"],
             "price_max": row["max_price"],
             "total": row["total"],
@@ -104,6 +113,7 @@ def api_products():
     search = request.args.get("search", "").strip()
     brand_param = request.args.get("brand", "").strip()
     fuel_param = request.args.get("fuel_type", "").strip()
+    category_param = request.args.get("category", "").strip()
     min_price = request.args.get("min_price", type=int)
     max_price = request.args.get("max_price", type=int)
     in_stock = request.args.get("in_stock", "").lower() in ("1", "true")
@@ -129,6 +139,13 @@ def api_products():
             placeholders = ",".join("?" for _ in fuels)
             where_clauses.append(f"fuel_type IN ({placeholders})")
             params += fuels
+
+    if category_param:
+        cats = [c.strip() for c in category_param.split(",") if c.strip()]
+        if cats:
+            placeholders = ",".join("?" for _ in cats)
+            where_clauses.append(f"category IN ({placeholders})")
+            params += cats
 
     if min_price is not None:
         where_clauses.append("price_current >= ?")

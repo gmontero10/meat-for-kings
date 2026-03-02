@@ -11,6 +11,7 @@
     products: [],
     filters: {
       search: '',
+      categories: [],
       brands: [],
       fuelTypes: [],
       minPrice: null,
@@ -50,6 +51,7 @@
     maxPrice:         $('#max-price'),
     brandSearch:      $('#brand-search'),
     brandList:        $('#brand-list'),
+    categoryList:     $('#category-list'),
     fuelTypeList:     $('#fuel-type-list'),
     inStockToggle:    $('#in-stock-toggle'),
     hasRatingToggle:  $('#has-rating-toggle'),
@@ -261,6 +263,7 @@
     };
     if (state.filters.search) p.search = state.filters.search;
     if (state.filters.brands.length) p.brand = state.filters.brands.join(',');
+    if (state.filters.categories.length) p.category = state.filters.categories.join(',');
     if (state.filters.fuelTypes.length) p.fuel_type = state.filters.fuelTypes.join(',');
     if (state.filters.minPrice != null) p.min_price = state.filters.minPrice;
     if (state.filters.maxPrice != null) p.max_price = state.filters.maxPrice;
@@ -362,6 +365,18 @@
       .join('');
   }
 
+  function populateCategories(categories) {
+    dom.categoryList.innerHTML = categories
+      .map(
+        (c) => `
+        <label class="checkbox-item">
+          <input type="checkbox" value="${escapeHtml(c)}" class="category-cb">
+          <span class="cb-label">${escapeHtml(c)}</span>
+        </label>`
+      )
+      .join('');
+  }
+
   function populateFuelTypes(types) {
     dom.fuelTypeList.innerHTML = types
       .map(
@@ -385,6 +400,9 @@
     }
     for (const b of state.filters.brands) {
       tags.push({ label: b, type: 'brand', value: b });
+    }
+    for (const c of state.filters.categories) {
+      tags.push({ label: c, type: 'category', value: c });
     }
     for (const f of state.filters.fuelTypes) {
       tags.push({ label: f, type: 'fuel', value: f });
@@ -424,6 +442,11 @@
         const cb = dom.brandList.querySelector(`input[value="${CSS.escape(value)}"]`);
         if (cb) cb.checked = false;
         break;
+      case 'category':
+        state.filters.categories = state.filters.categories.filter((c) => c !== value);
+        const cc = dom.categoryList.querySelector(`input[value="${CSS.escape(value)}"]`);
+        if (cc) cc.checked = false;
+        break;
       case 'fuel':
         state.filters.fuelTypes = state.filters.fuelTypes.filter((f) => f !== value);
         const fc = dom.fuelTypeList.querySelector(`input[value="${CSS.escape(value)}"]`);
@@ -452,6 +475,7 @@
   function clearAllFilters() {
     state.filters = {
       search: '',
+      categories: [],
       brands: [],
       fuelTypes: [],
       minPrice: null,
@@ -465,6 +489,7 @@
     dom.maxPrice.value = '';
     dom.inStockToggle.checked = false;
     dom.hasRatingToggle.checked = false;
+    dom.categoryList.querySelectorAll('input:checked').forEach((cb) => (cb.checked = false));
     dom.brandList.querySelectorAll('input:checked').forEach((cb) => (cb.checked = false));
     dom.fuelTypeList.querySelectorAll('input:checked').forEach((cb) => (cb.checked = false));
     $$('.preset-btn').forEach((b) => b.classList.remove('active'));
@@ -696,6 +721,19 @@
       });
     });
 
+    // --- Category checkboxes ---
+    dom.categoryList.addEventListener('change', (e) => {
+      if (!e.target.classList.contains('category-cb')) return;
+      const val = e.target.value;
+      if (e.target.checked) {
+        if (!state.filters.categories.includes(val)) state.filters.categories.push(val);
+      } else {
+        state.filters.categories = state.filters.categories.filter((c) => c !== val);
+      }
+      updateFilterTags();
+      resetAndReload();
+    });
+
     // --- Brand checkboxes ---
     dom.brandList.addEventListener('change', (e) => {
       if (!e.target.classList.contains('brand-cb')) return;
@@ -834,6 +872,7 @@
       ]);
 
       state.filterMeta = filterData;
+      populateCategories(filterData.categories);
       populateBrands(filterData.brands);
       populateFuelTypes(filterData.fuel_types);
     } catch (err) {

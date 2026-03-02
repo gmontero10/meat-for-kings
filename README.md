@@ -2,6 +2,8 @@
 
 A professional web catalog for browsing **802 gas grill products** scraped from BBQGuys.com. Warm luxury design, fast filtering, infinite scroll, and detailed product modals.
 
+**Live:** https://meat-for-kings.onrender.com/
+
 ![Stack](https://img.shields.io/badge/Flask-SQLite-blue) ![Products](https://img.shields.io/badge/Products-802-gold) ![Brands](https://img.shields.io/badge/Brands-54-green)
 
 ## Features
@@ -20,7 +22,7 @@ A professional web catalog for browsing **802 gas grill products** scraped from 
 ```bash
 # 1. Install dependencies
 cd ~/Meat\ for\ Kings
-pip3 install flask
+pip3 install -r requirements.txt
 
 # 2. Start the server
 python3 app.py
@@ -31,6 +33,17 @@ open http://localhost:8000
 
 The server creates SQLite indexes on first run for fast queries.
 
+## Deployment
+
+Hosted on [Render](https://render.com) (free tier). Every push to `main` triggers an automatic redeploy via Render's GitHub integration.
+
+| Detail | Value |
+|--------|-------|
+| Platform | Render (free web service) |
+| Server | gunicorn |
+| Config | `render.yaml` (Render Blueprint) |
+| Auto-deploy | Yes — on push to `main` |
+
 ## Project Structure
 
 ```
@@ -38,7 +51,8 @@ Meat for Kings/
 ├── app.py                  # Flask server + JSON API (218 lines)
 ├── catalog.db              # SQLite database (802 products, ~1.3 MB)
 ├── scrape.py               # Playwright scraper (standalone)
-├── requirements.txt        # playwright, beautifulsoup4, flask
+├── render.yaml             # Render deployment config
+├── requirements.txt        # flask, gunicorn
 ├── CLAUDE.md               # Claude Code context file
 ├── static/
 │   ├── css/style.css       # Design system (1447 lines)

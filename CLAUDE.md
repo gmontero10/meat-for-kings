@@ -1,6 +1,8 @@
 # Meat for Kings
 
-Gas grill product catalog web app. 802 products scraped from BBQGuys.com.
+Grill product catalog web app. 871 products (gas + pellet grills) scraped from BBQGuys.com.
+
+**Live site:** https://meat-for-kings.onrender.com/
 
 ## Quick Start
 
@@ -8,6 +10,17 @@ Gas grill product catalog web app. 802 products scraped from BBQGuys.com.
 cd ~/Meat\ for\ Kings
 python3 app.py          # http://localhost:8000
 ```
+
+## Deployment
+
+Hosted on **Render** (free tier). Auto-deploys on every push to `main` via Render's GitHub integration.
+
+- **Repo:** https://github.com/gmontero10/meat-for-kings
+- **Config:** `render.yaml` (Render Blueprint)
+- **Production server:** gunicorn (`gunicorn app:app --bind 0.0.0.0:$PORT`)
+- **Build command:** `pip install -r requirements.txt && python -c "from app import ensure_indexes; ensure_indexes()"`
+
+The SQLite DB is read-only at runtime and ships with each deploy. Render's free tier filesystem is ephemeral, which is fine since we never write to the DB.
 
 ## Architecture
 
@@ -20,6 +33,7 @@ python3 app.py          # http://localhost:8000
 | `static/js/app.js` | IIFE-wrapped SPA — state, API calls, rendering, events |
 | `static/css/style.css` | Full design system with CSS custom properties |
 | `catalog.db` | SQLite, single `products` table, read-only at runtime |
+| `render.yaml` | Render Blueprint — build/start commands, free tier |
 | `scrape.py` | Playwright scraper (standalone, do not modify) |
 
 ## Database
@@ -69,3 +83,4 @@ Warm luxury palette with gold accent (`#C8963E`). Fonts: Playfair Display (headi
 - Add a build step or framework — this is intentionally vanilla
 - Remove the `escapeHtml()` / `sanitizeHtml()` calls (XSS protection)
 - Use port 5000 (blocked by macOS AirPlay Receiver)
+- Remove `gunicorn` from requirements.txt (needed for production on Render)
