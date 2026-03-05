@@ -1,4 +1,4 @@
-"""Meat for Kings — Flask backend serving the gas grill catalog."""
+"""Meat for Kings — Flask backend serving the homepage and grill catalog."""
 
 import json
 import sqlite3
@@ -54,8 +54,18 @@ def ensure_indexes():
 # ---------------------------------------------------------------------------
 
 @app.route("/")
-def index():
-    return render_template("index.html")
+def home():
+    return render_template("home.html")
+
+
+@app.route("/catalog")
+def catalog():
+    return render_template("catalog.html")
+
+
+@app.route("/cortes")
+def cortes():
+    return render_template("cuts_menu-es.html")
 
 
 @app.route("/api/filters")

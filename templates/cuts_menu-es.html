@@ -1,0 +1,2432 @@
+<!DOCTYPE html>
+<html lang="es-419">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meat for Kings — Nuestros Cortes</title>
+  <meta name="description" content="Explora nuestra colección completa de cortes USDA Prime, Heritage y Wagyu A5. Seleccionados a mano por nuestros maestros carniceros.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================
+       DESIGN TOKENS
+       ========================================= */
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-surface: #1a1714;
+      --bg-surface-hover: #221f1a;
+      --bg-elevated: #252118;
+      --text-primary: #f5f0eb;
+      --text-secondary: #a8998a;
+      --accent-gold: #c8a55e;
+      --accent-gold-hover: #dbb974;
+      --accent-ember: #8b2500;
+      --accent-ember-soft: rgba(139, 37, 0, 0.15);
+      --border-color: #2a2520;
+      --border-subtle: #1f1c18;
+
+      --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --space-2xl: 6rem;
+      --space-3xl: 8rem;
+
+      --max-width: 1200px;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+
+      --transition-fast: 0.2s ease;
+      --transition-base: 0.3s ease;
+      --transition-slow: 0.6s ease;
+    }
+
+    /* =========================================
+       RESET & BASE
+       ========================================= */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    /* =========================================
+       UTILITY
+       ========================================= */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* =========================================
+       TYPOGRAPHY
+       ========================================= */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+    }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: var(--space-sm);
+    }
+
+    /* =========================================
+       BUTTONS
+       ========================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-base);
+      min-height: 48px;
+    }
+
+    .btn-primary {
+      background: var(--accent-gold);
+      color: var(--bg-primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-gold-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(200, 165, 94, 0.3);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent-gold);
+      border: 1.5px solid var(--accent-gold);
+    }
+
+    .btn-outline:hover {
+      background: rgba(200, 165, 94, 0.1);
+      border-color: var(--accent-gold-hover);
+      color: var(--accent-gold-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline:active {
+      transform: translateY(0);
+    }
+
+    /* =========================================
+       NAVIGATION
+       ========================================= */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: var(--space-md) 0;
+      transition: all var(--transition-base);
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav.scrolled {
+      padding: var(--space-sm) 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-logo span {
+      color: var(--accent-gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+
+    .nav-links a.active {
+      color: var(--accent-gold);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent-gold);
+      transition: width var(--transition-base);
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 0.625rem 1.5rem;
+      font-size: 0.8rem;
+      min-height: 40px;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 28px;
+      padding: 4px 0;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: all var(--transition-base);
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--space-lg);
+        background: var(--bg-surface);
+        transition: right var(--transition-base);
+        border-left: 1px solid var(--border-color);
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .nav-links a {
+        font-size: 1rem;
+      }
+    }
+
+    .gold-line {
+      width: 60px;
+      height: 2px;
+      background: var(--accent-gold);
+      margin: var(--space-sm) auto;
+    }
+
+    /* =========================================
+       FILTER BAR
+       ========================================= */
+    .filter-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 89px 0 var(--space-sm);
+    }
+
+    .filter-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 0.25rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 4px;
+      background: var(--bg-surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .filter-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-tab {
+      padding: 0.625rem 1.25rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      border-radius: calc(var(--radius-md) - 2px);
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+      min-height: 40px;
+    }
+
+    .filter-tab:hover {
+      color: var(--text-primary);
+      background: var(--bg-surface-hover);
+    }
+
+    .filter-tab.active {
+      color: var(--bg-primary);
+      background: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .filter-count {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .filter-count strong {
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .filter-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .filter-count {
+        text-align: center;
+      }
+    }
+
+    /* =========================================
+       MENU SECTION
+       ========================================= */
+    .menu-section {
+      padding: var(--space-xl) 0 var(--space-2xl);
+      margin-top: 145px;
+    }
+
+    /* Category header */
+    .category-group {
+      margin-bottom: var(--space-2xl);
+    }
+
+    .category-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .category-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(200, 165, 94, 0.06);
+      border: 1px solid rgba(200, 165, 94, 0.12);
+      flex-shrink: 0;
+    }
+
+    .category-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent-gold);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .category-info h2 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      margin-bottom: 0.25rem;
+    }
+
+    .category-info p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 300;
+    }
+
+    /* =========================================
+       PRODUCT CARDS
+       ========================================= */
+    .cuts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+
+    .cut-card {
+      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all var(--transition-base);
+    }
+
+    .cut-card:hover {
+      border-color: rgba(200, 165, 94, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(200, 165, 94, 0.08);
+    }
+
+    /* Image area */
+    .cut-card-visual {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .cut-card-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .cut-card:hover .cut-card-visual img {
+      transform: scale(1.06);
+    }
+
+    .cut-card-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(26, 23, 20, 0.5) 0%,
+        transparent 40%
+      );
+      pointer-events: none;
+    }
+
+    /* Badges */
+    .cut-badge {
+      position: absolute;
+      top: var(--space-sm);
+      left: var(--space-sm);
+      z-index: 2;
+      display: flex;
+      gap: 0.375rem;
+    }
+
+    .badge {
+      padding: 0.3rem 0.65rem;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+    }
+
+    .badge-grade {
+      background: var(--accent-ember);
+      color: var(--text-primary);
+    }
+
+    .badge-new {
+      background: var(--accent-gold);
+      color: var(--bg-primary);
+    }
+
+    .badge-limited {
+      background: rgba(200, 165, 94, 0.15);
+      color: var(--accent-gold);
+      border: 1px solid rgba(200, 165, 94, 0.25);
+    }
+
+    /* Quick add button on image */
+    .cut-quick-add {
+      position: absolute;
+      bottom: var(--space-sm);
+      right: var(--space-sm);
+      z-index: 2;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-gold);
+      border-radius: 50%;
+      opacity: 0;
+      transform: scale(0.8) translateY(4px);
+      transition: all var(--transition-base);
+    }
+
+    .cut-quick-add svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--bg-primary);
+      fill: none;
+      stroke-width: 2.5;
+    }
+
+    .cut-card:hover .cut-quick-add {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .cut-quick-add:hover {
+      background: var(--accent-gold-hover);
+      transform: scale(1.08) translateY(0);
+    }
+
+    /* Card body */
+    .cut-card-body {
+      padding: var(--space-md);
+    }
+
+    .cut-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      margin-bottom: 0.625rem;
+    }
+
+    .cut-card-name {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .cut-card-price {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: var(--accent-gold);
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .cut-card-origin {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-bottom: var(--space-sm);
+    }
+
+    .cut-card-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-weight: 300;
+      margin-bottom: var(--space-md);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Meta row (weight, serving, cook) */
+    .cut-card-meta {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--border-color);
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+    }
+
+    .meta-item svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--accent-gold);
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 1024px) {
+      .cuts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 580px) {
+      .cuts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =========================================
+       FEATURED / BUTCHER'S CHOICE BANNER
+       ========================================= */
+    .butcher-choice {
+      margin-bottom: var(--space-2xl);
+    }
+
+    .butcher-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--accent-gold);
+      background: var(--bg-surface);
+      position: relative;
+    }
+
+    .butcher-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top right, rgba(200, 165, 94, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .butcher-card-img {
+      position: relative;
+      min-height: 400px;
+      overflow: hidden;
+    }
+
+    .butcher-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+
+    .butcher-card-content {
+      position: relative;
+      z-index: 2;
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .butcher-card-content .section-label {
+      margin-bottom: var(--space-xs);
+    }
+
+    .butcher-card-content h2 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      margin-bottom: var(--space-sm);
+    }
+
+    .butcher-card-content h2 em {
+      color: var(--accent-gold);
+      font-style: italic;
+    }
+
+    .butcher-card-content .desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: var(--space-md);
+    }
+
+    .butcher-card-details {
+      display: flex;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .butcher-detail {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .butcher-detail-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 0.25rem;
+    }
+
+    .butcher-detail-value {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .butcher-card-actions {
+      display: flex;
+      gap: var(--space-sm);
+    }
+
+    @media (max-width: 768px) {
+      .butcher-card {
+        grid-template-columns: 1fr;
+      }
+
+      .butcher-card-img {
+        min-height: 280px;
+      }
+
+      .butcher-card-content {
+        padding: var(--space-lg) var(--space-md);
+      }
+
+      .butcher-card-details {
+        gap: var(--space-md);
+      }
+    }
+
+    /* =========================================
+       HOW IT WORKS STRIP
+       ========================================= */
+    .process-strip {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: var(--space-xl) 0;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .process-step {
+      text-align: center;
+      position: relative;
+    }
+
+    .process-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -20px;
+      top: 28px;
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent-gold), transparent);
+      opacity: 0.3;
+    }
+
+    .process-number {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      opacity: 0.25;
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+
+    .process-step h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.375rem;
+    }
+
+    .process-step p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-md);
+      }
+
+      .process-step:not(:last-child)::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .process-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* =========================================
+       FOOTER
+       ========================================= */
+    .footer {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-color);
+      padding: var(--space-3xl) 0 var(--space-lg);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: var(--space-xl);
+      margin-bottom: var(--space-xl);
+    }
+
+    .footer-brand h4 {
+      font-size: 1.25rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer-brand h4 span {
+      color: var(--accent-gold);
+    }
+
+    .footer-brand p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      font-weight: 300;
+      max-width: 300px;
+    }
+
+    .footer-col h5 {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-col ul li a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-newsletter p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-bottom: var(--space-sm);
+      line-height: 1.6;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      transition: border-color var(--transition-fast);
+      min-height: 44px;
+    }
+
+    .newsletter-form input::placeholder {
+      color: var(--text-secondary);
+    }
+
+    .newsletter-form input:focus {
+      outline: none;
+      border-color: var(--accent-gold);
+    }
+
+    .newsletter-form button {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      min-height: 44px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: var(--space-sm);
+    }
+
+    .footer-socials a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      transition: all var(--transition-fast);
+    }
+
+    .footer-socials a:hover {
+      border-color: var(--accent-gold);
+      background: rgba(200, 165, 94, 0.1);
+    }
+
+    .footer-socials a svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--text-secondary);
+      fill: none;
+      stroke-width: 2;
+      transition: stroke var(--transition-fast);
+    }
+
+    .footer-socials a:hover svg {
+      stroke: var(--accent-gold);
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-lg);
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer-newsletter {
+        grid-column: 1 / -1;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAVIGATION ============ -->
+  <nav class="nav scrolled" role="navigation" aria-label="Navegación principal">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo" aria-label="Meat for Kings Inicio">MEAT FOR <span>KINGS</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="/cortes" class="active">Cortes</a>
+        <a href="/catalog">Parrilla</a>
+        <a href="/#story">Nuestra Historia</a>
+        <a href="/#membership">Membresía</a>
+        <a href="/catalog" class="btn btn-primary nav-cta">Comprar</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ FILTER BAR ============ -->
+  <div class="filter-bar" id="filterBar">
+    <div class="container filter-inner">
+      <div class="filter-tabs" role="tablist" aria-label="Filtrar por categoría">
+        <button class="filter-tab active" role="tab" aria-selected="true" data-filter="all">Todos los Cortes</button>
+        <button class="filter-tab" role="tab" aria-selected="false" data-filter="wagyu">Wagyu</button>
+        <button class="filter-tab" role="tab" aria-selected="false" data-filter="beef">Res</button>
+        <button class="filter-tab" role="tab" aria-selected="false" data-filter="chicken">Pollo</button>
+        <button class="filter-tab" role="tab" aria-selected="false" data-filter="pork">Cerdo y Especialidades</button>
+      </div>
+      <div class="filter-count">
+        Mostrando <strong id="visibleCount">46</strong> cortes
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ BUTCHER'S CHOICE ============ -->
+  <main class="menu-section">
+    <div class="container">
+
+      <div class="butcher-choice reveal" data-category="wagyu">
+        <div class="butcher-card">
+          <div class="butcher-card-img">
+            <img src="https://images.unsplash.com/photo-1504973960431-1c467e159aa4?auto=format&fit=crop&w=900&q=80" alt="Hannari Wagyu Chuck Flap A5 con marmoleo extraordinario" loading="eager">
+          </div>
+          <div class="butcher-card-content">
+            <p class="section-label">Selección del Carnicero</p>
+            <h2>Hannari Wagyu <em>Chuck Flap A5</em></h2>
+            <p class="desc">La máxima indulgencia. Este chuck flap Hannari Wagyu grado A5 ofrece un marmoleo extraordinario con sabores profundos y complejos. Un corte exclusivo reservado para verdaderos conocedores de la carne japonesa.</p>
+            <div class="butcher-card-details">
+              <div class="butcher-detail">
+                <span class="butcher-detail-label">Corte</span>
+                <span class="butcher-detail-value">Chuck Flap</span>
+              </div>
+              <div class="butcher-detail">
+                <span class="butcher-detail-label">Grado</span>
+                <span class="butcher-detail-value">A5</span>
+              </div>
+              <div class="butcher-detail">
+                <span class="butcher-detail-label">Precio</span>
+                <span class="butcher-detail-value">$450.00 /unidad</span>
+              </div>
+            </div>
+            <div class="butcher-card-actions">
+              <button class="btn btn-primary">Agregar al Carrito</button>
+              <button class="btn btn-outline">Detalles</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ WAGYU ============ -->
+      <div class="category-group" data-category="wagyu">
+        <div class="category-header reveal">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22c-4.97 0-7-3.58-7-7 0-4 3.5-7.5 4-10.5 1 2.5 3 3 3.5 5.5C13 8 14.5 6 14 3c3 2.5 5 6.5 5 12 0 3.42-2.03 7-7 7z"/><path d="M12 22c-1.66 0-3-1.5-3-3.5 0-2 1.5-3.5 2-5 .33 1.17 1 1.67 1.17 2.83C12.33 15 13.17 14 13 13c1 1 2 2.67 2 5.5 0 2-1.34 3.5-3 3.5z"/></svg>
+          </div>
+          <div class="category-info">
+            <h2>Wagyu</h2>
+            <p>Wagyu japonés y australiano importado — la cúspide del marmoleo y el sabor</p>
+          </div>
+        </div>
+
+        <div class="cuts-grid">
+          <article class="cut-card reveal" data-category="wagyu">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1615937722923-67f6deaf2cc9?auto=format&fit=crop&w=600&q=80" alt="Ribeye Wagyu Hannari" loading="lazy">
+              <div class="cut-badge">
+                <span class="badge badge-grade">A5</span>
+                <span class="badge badge-limited">Premium</span>
+              </div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Ribeye Wagyu Hannari</h3>
+                <span class="cut-card-price">$188.00</span>
+              </div>
+              <p class="cut-card-origin">Hannari &bull; Wagyu Japonés</p>
+              <p class="cut-card-desc">Exquisito ribeye japonés Hannari con marmoleo extraordinario y sabor mantecoso.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por unidad</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="wagyu">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1607116667981-987b17e7a8a3?auto=format&fit=crop&w=600&q=80" alt="Ribeye Wagyu INTOKU Grandmaster" loading="lazy">
+              <div class="cut-badge">
+                <span class="badge badge-grade">Wagyu</span>
+              </div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Ribeye Wagyu INTOKU Grandmaster</h3>
+                <span class="cut-card-price">$177.00</span>
+              </div>
+              <p class="cut-card-origin">INTOKU &bull; Grado Grandmaster</p>
+              <p class="cut-card-desc">Ribeye INTOKU grado Grandmaster con intenso y complejo sabor umami.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por unidad</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-2" data-category="wagyu">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1551028150-64b9f398f678?auto=format&fit=crop&w=600&q=80" alt="Flat Iron Añejado Wagyu INTOKU" loading="lazy">
+              <div class="cut-badge">
+                <span class="badge badge-grade">Wagyu</span>
+                <span class="badge badge-limited">Añejado</span>
+              </div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Flat Iron Añejado Wagyu INTOKU</h3>
+                <span class="cut-card-price">$120.00</span>
+              </div>
+              <p class="cut-card-origin">INTOKU &bull; Añejado Vintage</p>
+              <p class="cut-card-desc">Flat iron añejado con terneza excepcional y rico carácter Wagyu.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por unidad</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal" data-category="wagyu">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Tomahawk Wagyu Australiano ICON" loading="lazy">
+              <div class="cut-badge">
+                <span class="badge badge-grade">Wagyu</span>
+                <span class="badge badge-new">Nuevo</span>
+              </div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Tomahawk Wagyu Australiano ICON</h3>
+                <span class="cut-card-price">$144.00</span>
+              </div>
+              <p class="cut-card-origin">ICON &bull; Wagyu Australiano</p>
+              <p class="cut-card-desc">Impresionante tomahawk Wagyu australiano con marmoleo notable y gran profundidad de sabor.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por unidad</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============ BEEF — STEAKS ============ -->
+      <div class="category-group" data-category="beef">
+        <div class="category-header reveal">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2l-4 4-2 6 6-2 4-4"/><path d="M10 6L3 13c-1 1-1 3 1 4l4 1c1 0 2-1 3-2l6-6"/><path d="M6 16l-2 4"/></svg>
+          </div>
+          <div class="category-info">
+            <h2>Res — Steaks</h2>
+            <p>Cortes premium de steak para parrilla, sellado y ocasiones especiales</p>
+          </div>
+        </div>
+
+        <div class="cuts-grid">
+          <article class="cut-card reveal" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1588168333986-5078d3ae3976?auto=format&fit=crop&w=600&q=80" alt="Lomo Fino" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-grade">Premium</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Lomo Fino</h3>
+                <span class="cut-card-price">$15.00</span>
+              </div>
+              <p class="cut-card-origin">Res premium &bull; Pieza entera</p>
+              <p class="cut-card-desc">El corte más tierno de res, ideal como pieza central de una cena elegante.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por unidad</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=80" alt="Medallones de Lomo" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Medallones de Lomo</h3>
+                <span class="cut-card-price">$15.00</span>
+              </div>
+              <p class="cut-card-origin">Medallones precortados</p>
+              <p class="cut-card-desc">Medallones precortados perfectos para cenas rápidas y refinadas.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-2" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=600&q=80" alt="Steak de Lomo" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Steak de Lomo</h3>
+                <span class="cut-card-price">$15.00</span>
+              </div>
+              <p class="cut-card-origin">Corte clásico de steak</p>
+              <p class="cut-card-desc">Steak de lomo clásico, magro y con una terneza que se deshace en la boca.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1603048297172-c92544798d5a?auto=format&fit=crop&w=600&q=80" alt="Peceto" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Peceto</h3>
+                <span class="cut-card-price">$10.00</span>
+              </div>
+              <p class="cut-card-origin">Magro &bull; Versátil</p>
+              <p class="cut-card-desc">Magro y versátil, ideal para hornear o rebanar finamente para sándwiches.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por unidad</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1615937722923-67f6deaf2cc9?auto=format&fit=crop&w=600&q=80" alt="Picanha" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-limited">Más Vendido</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Picanha</h3>
+                <span class="cut-card-price">$10.00</span>
+              </div>
+              <p class="cut-card-origin">Favorita del churrasco brasileño</p>
+              <p class="cut-card-desc">La joya del churrasco brasileño, con una capa de grasa llena de sabor.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-2" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1546833998-877b37c2e5c6?auto=format&fit=crop&w=600&q=80" alt="Steak de Sirloin para Churrasco" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-grade">AA</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Steak de Sirloin para Churrasco (AA)</h3>
+                <span class="cut-card-price">$20.00</span>
+              </div>
+              <p class="cut-card-origin">Grado AA &bull; Corte para churrasco</p>
+              <p class="cut-card-desc">Sirloin grado AA para un auténtico churrasco a la parrilla.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1551028150-64b9f398f678?auto=format&fit=crop&w=600&q=80" alt="Lomo Entero" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Lomo Entero</h3>
+                <span class="cut-card-price">$12.00</span>
+              </div>
+              <p class="cut-card-origin">Lomo completo &bull; Porciona en casa</p>
+              <p class="cut-card-desc">Lomo entero para que cortes tus propios steaks premium en casa.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por unidad</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1529694157872-4e0c0f3b238b?auto=format&fit=crop&w=600&q=80" alt="Bistec de Res" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Bistec de Res</h3>
+                <span class="cut-card-price">$9.00</span>
+              </div>
+              <p class="cut-card-origin">Corte del día a día</p>
+              <p class="cut-card-desc">Bistec de res clásico, perfecto para la parrilla o el sartén.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-2" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1551135049-8a33b5883817?auto=format&fit=crop&w=600&q=80" alt="T-Bone" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-grade">Premium</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">T-Bone</h3>
+                <span class="cut-card-price">$18.00</span>
+              </div>
+              <p class="cut-card-origin">Lomo y bife en uno</p>
+              <p class="cut-card-desc">Dos steaks en uno — lomo y bife separados por un hueso en forma de T.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por unidad</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Tomahawk" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-new">Nuevo</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Tomahawk</h3>
+                <span class="cut-card-price">$22.00</span>
+              </div>
+              <p class="cut-card-origin">Corte de presentación</p>
+              <p class="cut-card-desc">Un corte de presentación espectacular con sabor intenso y profundo.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por unidad</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1603048297172-c92544798d5a?auto=format&fit=crop&w=600&q=80" alt="Tomahawk con Hueso" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Tomahawk con Hueso</h3>
+                <span class="cut-card-price">$16.00</span>
+              </div>
+              <p class="cut-card-origin">Con hueso &bull; Para compartir</p>
+              <p class="cut-card-desc">Impresionante corte con hueso, perfecto para sellado inverso y para compartir.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por unidad</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-2" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=80" alt="Sirloin Superior" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-grade">AA</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Sirloin Superior (AA)</h3>
+                <span class="cut-card-price">$25.00</span>
+              </div>
+              <p class="cut-card-origin">Grado AA &bull; Sabor intenso</p>
+              <p class="cut-card-desc">Sirloin superior grado AA con sabor intenso y textura firme.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por unidad</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1602473812169-36a0c5e11832?auto=format&fit=crop&w=600&q=80" alt="Paleta Tierna" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Paleta Tierna</h3>
+                <span class="cut-card-price">$12.00</span>
+              </div>
+              <p class="cut-card-origin">Versátil &bull; Sabrosa</p>
+              <p class="cut-card-desc">Tierna y sabrosa, excelente para cocción lenta o a la parrilla.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=600&q=80" alt="Steak Araña" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-limited">Corte Exclusivo</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Steak Araña</h3>
+                <span class="cut-card-price">$12.00</span>
+              </div>
+              <p class="cut-card-origin">Corte secreto del carnicero</p>
+              <p class="cut-card-desc">Un corte exclusivo del carnicero, apreciado por su sabor intenso y profundo.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por unidad</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-2" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=600&q=80" alt="Chuleta de Ribeye" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Chuleta de Ribeye</h3>
+                <span class="cut-card-price">$10.00</span>
+              </div>
+              <p class="cut-card-origin">Corte grueso &bull; Marmoleado</p>
+              <p class="cut-card-desc">Chuleta de ribeye de corte grueso con generoso marmoleo y textura jugosa.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============ BEEF — GROUND & EVERYDAY ============ -->
+      <div class="category-group" data-category="beef">
+        <div class="category-header reveal">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2l-4 4-2 6 6-2 4-4"/><path d="M10 6L3 13c-1 1-1 3 1 4l4 1c1 0 2-1 3-2l6-6"/><path d="M6 16l-2 4"/></svg>
+          </div>
+          <div class="category-info">
+            <h2>Res — Molida y Uso Diario</h2>
+            <p>Esenciales del día a día para hamburguesas, tacos, guisos y cenas entre semana</p>
+          </div>
+        </div>
+
+        <div class="cuts-grid">
+          <article class="cut-card reveal" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1602473812169-36a0c5e11832?auto=format&fit=crop&w=600&q=80" alt="Carne Molida Magra" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Carne Molida Magra</h3>
+                <span class="cut-card-price">$9.50</span>
+              </div>
+              <p class="cut-card-origin">Mezcla magra &bull; Versátil</p>
+              <p class="cut-card-desc">Mezcla molida magra, perfecta para comidas saludables y hamburguesas ligeras.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1529694157872-4e0c0f3b238b?auto=format&fit=crop&w=600&q=80" alt="Carne Molida Premium" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-limited">Más Vendido</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Carne Molida Premium</h3>
+                <span class="cut-card-price">$8.50</span>
+              </div>
+              <p class="cut-card-origin">Mezcla rica &bull; Favorita para hamburguesas</p>
+              <p class="cut-card-desc">Mezcla rica ideal para hamburguesas jugosas y albóndigas con mucho sabor.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-2" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=600&q=80" alt="Carne para Desmechar" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Carne para Desmechar</h3>
+                <span class="cut-card-price">$8.50</span>
+              </div>
+              <p class="cut-card-origin">Cocción lenta &bull; Desmechable</p>
+              <p class="cut-card-desc">Cocina a fuego lento hasta que se deshaga para tacos, burritos y sándwiches.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&w=600&q=80" alt="Carne para Guisar" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Carne para Guisar</h3>
+                <span class="cut-card-price">$8.50</span>
+              </div>
+              <p class="cut-card-origin">Cubos precortados &bull; Lista para guisar</p>
+              <p class="cut-card-desc">Cubos precortados listos para guisos abundantes, curries y braseados.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1615937722923-67f6deaf2cc9?auto=format&fit=crop&w=600&q=80" alt="Tiras de Res para Fajitas" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Tiras de Res para Fajitas</h3>
+                <span class="cut-card-price">$9.00</span>
+              </div>
+              <p class="cut-card-origin">Precortadas &bull; Listas para fajitas</p>
+              <p class="cut-card-desc">Tiras precortadas listas para unas fajitas chisporroteantes.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-2" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1588168333986-5078d3ae3976?auto=format&fit=crop&w=600&q=80" alt="Tiras de Lomo para Fajitas" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-grade">Premium</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Tiras de Lomo para Fajitas</h3>
+                <span class="cut-card-price">$15.00</span>
+              </div>
+              <p class="cut-card-origin">Corte de lomo &bull; Tiras premium</p>
+              <p class="cut-card-desc">Tiras premium de lomo para noches de fajitas de otro nivel.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1551135049-8a33b5883817?auto=format&fit=crop&w=600&q=80" alt="Hamburguesas" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Hamburguesas</h3>
+                <span class="cut-card-price">$8.00</span>
+              </div>
+              <p class="cut-card-origin">Preformadas &bull; Listas para la parrilla</p>
+              <p class="cut-card-desc">Hamburguesas preformadas de cuarto de libra, listas para la parrilla.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por 4 unidades</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============ BEEF — RIBS & SHANKS ============ -->
+      <div class="category-group" data-category="beef">
+        <div class="category-header reveal">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2l-4 4-2 6 6-2 4-4"/><path d="M10 6L3 13c-1 1-1 3 1 4l4 1c1 0 2-1 3-2l6-6"/><path d="M6 16l-2 4"/></svg>
+          </div>
+          <div class="category-info">
+            <h2>Res — Costillas y Chambarete</h2>
+            <p>Favoritos de cocción lenta para braseado, ahumado y platillos reconfortantes</p>
+          </div>
+        </div>
+
+        <div class="cuts-grid">
+          <article class="cut-card reveal" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1514516345957-556ca7d90a29?auto=format&fit=crop&w=600&q=80" alt="Chambarete sin Hueso" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Chambarete sin Hueso</h3>
+                <span class="cut-card-price">$6.00</span>
+              </div>
+              <p class="cut-card-origin">Sin hueso &bull; Listo para brasear</p>
+              <p class="cut-card-desc">Ideal para ossobuco y braseados lentos, deshuesado para servir fácilmente.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&w=600&q=80" alt="Chambarete con Hueso" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Chambarete con Hueso</h3>
+                <span class="cut-card-price">$5.00</span>
+              </div>
+              <p class="cut-card-origin">Corte tradicional &bull; Enriquece caldos</p>
+              <p class="cut-card-desc">Corte tradicional con hueso que enriquece caldos y braseados de maravilla.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-2" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Costillas de Res" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Costillas de Res</h3>
+                <span class="cut-card-price">$5.00</span>
+              </div>
+              <p class="cut-card-origin">Carnosas &bull; Listas para ahumar</p>
+              <p class="cut-card-desc">Costillas carnosas perfectas para ahumar o brasear lentamente hasta que estén tiernas.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=600&q=80" alt="Cuete" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Cuete</h3>
+                <span class="cut-card-price">$6.00</span>
+              </div>
+              <p class="cut-card-origin">Magro &bull; Económico</p>
+              <p class="cut-card-desc">Magro y económico, ideal para hornear o preparar carne seca.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=600&q=80" alt="Carne Seca" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-new">Nuevo</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Carne Seca</h3>
+                <span class="cut-card-price">$15.00</span>
+              </div>
+              <p class="cut-card-origin">Hecha en casa &bull; Alta en proteína</p>
+              <p class="cut-card-desc">Carne seca artesanal, un snack salado y alto en proteína.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por unidad</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-2" data-category="beef">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1432139509613-5c4255a1d197?auto=format&fit=crop&w=600&q=80" alt="Costilla Corta de Res" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-limited">Más Vendido</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Costilla Corta de Res</h3>
+                <span class="cut-card-price">$9.00</span>
+              </div>
+              <p class="cut-card-origin">Suculenta &bull; Favorita del BBQ</p>
+              <p class="cut-card-desc">Costillas cortas suculentas, ideales para brasear o BBQ coreano.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por unidad</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============ CHICKEN ============ -->
+      <div class="category-group" data-category="chicken">
+        <div class="category-header reveal">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 7c0-2.8-2.2-5-5-5-1.5 0-2.9.7-3.8 1.8"/><path d="M3 14c0 4 3.5 7 8 7s8-3 8-7c0-2-1-3.5-2.5-4.5"/><path d="M12 4v4M10 16h4"/></svg>
+          </div>
+          <div class="category-info">
+            <h2>Pollo</h2>
+            <p>Aves frescas de granja — pollos enteros, cortes y especialidades</p>
+          </div>
+        </div>
+
+        <div class="cuts-grid">
+          <article class="cut-card reveal" data-category="chicken">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=600&q=80" alt="Pollo Entero" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Pollo Entero</h3>
+                <span class="cut-card-price">$3.00</span>
+              </div>
+              <p class="cut-card-origin">Fresco de granja &bull; Ave entera</p>
+              <p class="cut-card-desc">Pollo entero fresco de granja, perfecto para hornear o aplanar.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="chicken">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82571?auto=format&fit=crop&w=600&q=80" alt="Pollo Molido" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Pollo Molido</h3>
+                <span class="cut-card-price">$8.50</span>
+              </div>
+              <p class="cut-card-origin">Magro &bull; Versátil</p>
+              <p class="cut-card-desc">Pollo molido magro para hamburguesas más saludables, albóndigas y salteados.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-2" data-category="chicken">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Milanesas de Pollo" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Milanesas de Pollo</h3>
+                <span class="cut-card-price">$8.50</span>
+              </div>
+              <p class="cut-card-origin">Aplanadas &bull; 4 por paquete</p>
+              <p class="cut-card-desc">Milanesas aplanadas listas para empanizar o freír rápidamente.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por 4 unidades</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal" data-category="chicken">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1598103442097-8b74df4ec18a?auto=format&fit=crop&w=600&q=80" alt="Muslos de Pollo" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-limited">Más Vendido</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Muslos de Pollo</h3>
+                <span class="cut-card-price">$4.00</span>
+              </div>
+              <p class="cut-card-origin">Con hueso &bull; 3 por paquete</p>
+              <p class="cut-card-desc">Muslos jugosos con hueso y sabor intenso, ideales para la parrilla.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por 3 unidades</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="chicken">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1606728035253-49e8a23146de?auto=format&fit=crop&w=600&q=80" alt="Alitas de Pollo" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Alitas de Pollo</h3>
+                <span class="cut-card-price">$4.00</span>
+              </div>
+              <p class="cut-card-origin">Para la fiesta &bull; Versátiles</p>
+              <p class="cut-card-desc">Alitas listas para freír, hornear o ahumar.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-2" data-category="chicken">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82571?auto=format&fit=crop&w=600&q=80" alt="Pechuga de Pollo Deshuesada" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-grade">Premium</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Pechuga de Pollo Deshuesada</h3>
+                <span class="cut-card-price">$10.00</span>
+              </div>
+              <p class="cut-card-origin">Sin hueso &bull; Sin piel</p>
+              <p class="cut-card-desc">Pechuga magra y versátil, deshuesada para infinitas preparaciones.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal" data-category="chicken">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1501200291289-c5a76c232e5f?auto=format&fit=crop&w=600&q=80" alt="Piel de Pollo" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Piel de Pollo</h3>
+                <span class="cut-card-price">$1.00</span>
+              </div>
+              <p class="cut-card-origin">Para dorar y crocantear</p>
+              <p class="cut-card-desc">Crujiente al dorarla, perfecta para guarniciones y grasa de cocina.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="chicken">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1560781290-7dc94c0f8f4f?auto=format&fit=crop&w=600&q=80" alt="Hígado de Pollo" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Hígado de Pollo</h3>
+                <span class="cut-card-price">$0.50</span>
+              </div>
+              <p class="cut-card-origin">Rico &bull; Nutritivo</p>
+              <p class="cut-card-desc">Rico y nutritivo, ideal para paté o salteado con hierbas.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============ PORK & SPECIALTY ============ -->
+      <div class="category-group" data-category="pork">
+        <div class="category-header reveal">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8-8-3.6-8-8z"/><path d="M9 12h.01M15 12h.01"/><path d="M10 16s1 1 2 1 2-1 2-1"/></svg>
+          </div>
+          <div class="category-info">
+            <h2>Cerdo y Especialidades</h2>
+            <p>Costillas de cerdo, embutidos y especialidades latinoamericanas</p>
+          </div>
+        </div>
+
+        <div class="cuts-grid">
+          <article class="cut-card reveal" data-category="pork">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Costillas de Cerdo" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-limited">Más Vendido</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Costillas de Cerdo</h3>
+                <span class="cut-card-price">$18.00</span>
+              </div>
+              <p class="cut-card-origin">Carnosas &bull; Listas para ahumar</p>
+              <p class="cut-card-desc">Costillas carnosas y suculentas, perfectas para ahumar a fuego lento.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="pork">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1432139509613-5c4255a1d197?auto=format&fit=crop&w=600&q=80" alt="Morcilla Estilo Mon" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Morcilla Estilo Mon</h3>
+                <span class="cut-card-price">$8.00</span>
+              </div>
+              <p class="cut-card-origin">Tradicional &bull; Receta del viejo mundo</p>
+              <p class="cut-card-desc">Morcilla tradicional con auténtico sabor del viejo mundo.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-2" data-category="pork">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=600&q=80" alt="Chistorra" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-grade">Vasca</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Chistorra</h3>
+                <span class="cut-card-price">$23.00</span>
+              </div>
+              <p class="cut-card-origin">Estilo vasco &bull; Curada</p>
+              <p class="cut-card-desc">Embutido fino de estilo vasco curado con notas de pimentón ahumado.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal" data-category="pork">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=600&q=80" alt="Chorizo" loading="lazy">
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Chorizo</h3>
+                <span class="cut-card-price">$12.00</span>
+              </div>
+              <p class="cut-card-origin">Condimentado &bull; Especias intensas</p>
+              <p class="cut-card-desc">Embutido de cerdo condimentado con especias intensas y profundidad ahumada.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cut-card reveal reveal-delay-1" data-category="pork">
+            <div class="cut-card-visual">
+              <img src="https://images.unsplash.com/photo-1606728035253-49e8a23146de?auto=format&fit=crop&w=600&q=80" alt="Hallacas venezolanas" loading="lazy">
+              <div class="cut-badge"><span class="badge badge-new">Nuevo</span></div>
+              <button class="cut-quick-add" aria-label="Agregar al carrito"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+            </div>
+            <div class="cut-card-body">
+              <div class="cut-card-top">
+                <h3 class="cut-card-name">Hallacas</h3>
+                <span class="cut-card-price">$7.60</span>
+              </div>
+              <p class="cut-card-origin">Venezolana &bull; Tradicional</p>
+              <p class="cut-card-desc">Tradicionales bolsillos de masa de maíz venezolanos rellenos de sabor.</p>
+              <div class="cut-card-meta">
+                <div class="meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span>Por kg</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ============ PROCESS STRIP ============ -->
+  <section class="process-strip">
+    <div class="container">
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <div class="process-number">01</div>
+          <h4>Elige tus Cortes</h4>
+          <p>Explora nuestra colección y arma tu pedido</p>
+        </div>
+        <div class="process-step reveal reveal-delay-1">
+          <div class="process-number">02</div>
+          <h4>Selección a Mano</h4>
+          <p>Nuestros carniceros eligen lo mejor para ti</p>
+        </div>
+        <div class="process-step reveal reveal-delay-2">
+          <div class="process-number">03</div>
+          <h4>Sellado al Vacío</h4>
+          <p>Congelado y empacado con hielo seco</p>
+        </div>
+        <div class="process-step reveal reveal-delay-3">
+          <div class="process-number">04</div>
+          <h4>Entrega Fresca</h4>
+          <p>En tu puerta en 48 horas, garantizado</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>MEAT FOR <span>KINGS</span></h4>
+          <p>Cortes excepcionales y esenciales para la parrilla para quienes no se conforman. De nuestros carniceros a tu mesa.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Tienda</h5>
+          <ul>
+            <li><a href="/cortes">Todos los Cortes</a></li>
+            <li><a href="#">Res</a></li>
+            <li><a href="#">Wagyu</a></li>
+            <li><a href="#">Pollo</a></li>
+            <li><a href="#">Cerdo y Especialidades</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Empresa</h5>
+          <ul>
+            <li><a href="#">Nuestra Historia</a></li>
+            <li><a href="#">Origen</a></li>
+            <li><a href="#">Membresía</a></li>
+            <li><a href="#">Tarjetas de Regalo</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-newsletter">
+          <h5>Mantente al Día</h5>
+          <p>Acceso anticipado a nuevos cortes, tips de parrilla y ofertas exclusivas para miembros.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value = ''; alert('¡Gracias por suscribirte!');">
+            <input type="email" placeholder="Ingresa tu correo electrónico" aria-label="Correo electrónico para el boletín" required>
+            <button type="submit" class="btn btn-primary">Suscribirse</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Meat for Kings. Todos los derechos reservados.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24"><path d="M4 4l11.733 16H20L8.267 4z"/><path d="M4 20l6.768-6.768M15.232 10.768L20 4"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script>
+    // ---- Navigation scroll behavior ----
+    const nav = document.querySelector('.nav');
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    // Nav stays compact (scrolled) on this page at all times
+
+    // ---- Mobile menu toggle ----
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('active');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ---- Scroll-triggered reveal animations ----
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // ---- Category filtering ----
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const categoryGroups = document.querySelectorAll('.category-group');
+    const butcherChoice = document.querySelector('.butcher-choice');
+    const visibleCountEl = document.getElementById('visibleCount');
+
+    function updateCount() {
+      const visible = document.querySelectorAll('.cut-card:not([style*="display: none"])').length;
+      // Include butcher's choice if visible
+      const butcherVisible = butcherChoice && butcherChoice.style.display !== 'none';
+      visibleCountEl.textContent = visible + (butcherVisible ? 1 : 0);
+    }
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Update active tab
+        filterTabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        const filter = tab.dataset.filter;
+
+        if (filter === 'all') {
+          // Show everything
+          categoryGroups.forEach(g => g.style.display = '');
+          if (butcherChoice) butcherChoice.style.display = '';
+          document.querySelectorAll('.cut-card').forEach(c => c.style.display = '');
+        } else {
+          // Show/hide category groups
+          categoryGroups.forEach(g => {
+            if (g.dataset.category === filter) {
+              g.style.display = '';
+            } else {
+              g.style.display = 'none';
+            }
+          });
+
+          // Show/hide butcher's choice
+          if (butcherChoice) {
+            if (butcherChoice.dataset.category === filter) {
+              butcherChoice.style.display = '';
+            } else {
+              butcherChoice.style.display = 'none';
+            }
+          }
+        }
+
+        updateCount();
+
+        // Re-trigger reveal on newly visible items
+        document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+          revealObserver.observe(el);
+        });
+      });
+    });
+
+    updateCount();
+  </script>
+</body>
+</html>

@@ -28,10 +28,12 @@ The SQLite DB is read-only at runtime and ships with each deploy. Render's free 
 
 | File | Role |
 |------|------|
-| `app.py` | Flask server, 4 routes (1 HTML + 3 JSON API) |
-| `templates/index.html` | Jinja2 shell — header, sidebar, grid, modal |
-| `static/js/app.js` | IIFE-wrapped SPA — state, API calls, rendering, events |
-| `static/css/style.css` | Full design system with CSS custom properties |
+| `app.py` | Flask server, 6 routes (3 HTML + 3 JSON API) |
+| `templates/home.html` | Dark luxury landing page — self-contained (inline CSS/JS), no shared assets with catalog |
+| `templates/cuts_menu-es.html` | Cortes (cuts) menu page — self-contained (inline CSS/JS), category filtering, static product cards |
+| `templates/catalog.html` | Jinja2 shell — header, sidebar, grid, modal |
+| `static/js/app.js` | IIFE-wrapped SPA — state, API calls, rendering, events (catalog only) |
+| `static/css/style.css` | Catalog design system with CSS custom properties |
 | `catalog-es.db` | SQLite, single `products` table, Spanish-translated, read-only at runtime |
 | `render.yaml` | Render Blueprint — build/start commands, free tier |
 | `scrape.py` | Playwright scraper (standalone, do not modify) |
@@ -48,7 +50,9 @@ Seven indexes exist: `idx_brand`, `idx_price`, `idx_fuel`, `idx_stock`, `idx_rat
 
 ## API Endpoints
 
-- `GET /` — serves index.html
+- `GET /` — serves home.html (dark luxury landing page)
+- `GET /cortes` — serves cuts_menu-es.html (meat cuts menu with category filtering)
+- `GET /catalog` — serves catalog.html (product catalog with filters, search, infinite scroll)
 - `GET /api/filters` — brands list, fuel types, price range, total count
 - `GET /api/products` — paginated, filtered, sorted product list (16 card-display fields)
   - Params: `page`, `per_page`(36), `sort`, `search`, `brand`(comma-sep), `fuel_type`(comma-sep), `min_price`, `max_price`, `in_stock`, `has_rating`
@@ -71,9 +75,9 @@ Warm luxury palette with gold accent (`#C8963E`). Fonts: Playfair Display (headi
 
 ## Common Tasks
 
-**Add a new filter:** Add param handling in `api_products()` → add UI element in `index.html` → bind change event in `bindEvents()` → add to `state.filters` + `buildParams()` + `updateFilterTags()` + `removeFilter()` + `clearAllFilters()`.
+**Add a new filter:** Add param handling in `api_products()` → add UI element in `catalog.html` → bind change event in `bindEvents()` → add to `state.filters` + `buildParams()` + `updateFilterTags()` + `removeFilter()` + `clearAllFilters()`.
 
-**Add a new sort option:** Add to `sort_map` in `app.py` → add `<option>` in `index.html`.
+**Add a new sort option:** Add to `sort_map` in `app.py` → add `<option>` in `catalog.html`.
 
 **Change card layout:** Edit `productCard()` in `app.js` + `.product-card` styles in `style.css`.
 

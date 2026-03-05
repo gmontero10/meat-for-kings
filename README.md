@@ -49,17 +49,19 @@ Hosted on [Render](https://render.com) (free tier). Every push to `main` trigger
 
 ```
 Meat for Kings/
-├── app.py                  # Flask server + JSON API
+├── app.py                  # Flask server (3 pages + JSON API)
 ├── catalog-es.db           # SQLite database (1,505 products, Spanish)
 ├── scrape.py               # Playwright scraper (standalone)
 ├── render.yaml             # Render deployment config
 ├── requirements.txt        # flask, gunicorn
 ├── CLAUDE.md               # Claude Code context file
 ├── static/
-│   ├── css/style.css       # Design system
+│   ├── css/style.css       # Catalog design system
 │   └── js/app.js           # SPA frontend (Spanish UI)
 └── templates/
-    └── index.html          # Page shell (Spanish UI)
+    ├── home.html           # Landing page (self-contained, inline CSS/JS)
+    ├── cuts_menu-es.html   # Cortes menu — meat cuts with category filters (self-contained)
+    └── catalog.html        # Product catalog shell (Spanish UI)
 ```
 
 ## API Reference

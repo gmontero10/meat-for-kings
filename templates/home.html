@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="es-419">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meat for Kings — Cortes Excepcionales. Directo a Tu Puerta.</title>
+  <meta name="description" content="Carnes USDA Prime y de razas heritage, seleccionadas a mano y enviadas frescas por nuestros maestros carniceros. Productos premium para la parrilla del chef exigente.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================
+       DESIGN TOKENS
+       ========================================= */
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-surface: #1a1714;
+      --bg-surface-hover: #221f1a;
+      --text-primary: #f5f0eb;
+      --text-secondary: #a8998a;
+      --accent-gold: #c8a55e;
+      --accent-gold-hover: #dbb974;
+      --accent-ember: #8b2500;
+      --border-color: #2a2520;
+      --border-subtle: #1f1c18;
+
+      --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --space-2xl: 6rem;
+      --space-3xl: 8rem;
+
+      --max-width: 1200px;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+
+      --transition-fast: 0.2s ease;
+      --transition-base: 0.3s ease;
+      --transition-slow: 0.5s ease;
+    }
+
+    /* =========================================
+       RESET & BASE
+       ========================================= */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    /* =========================================
+       UTILITY
+       ========================================= */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Scroll-triggered animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* =========================================
+       TYPOGRAPHY
+       ========================================= */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+    }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: var(--space-sm);
+    }
+
+    /* =========================================
+       BUTTONS
+       ========================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-base);
+      min-height: 48px;
+    }
+
+    .btn-primary {
+      background: var(--accent-gold);
+      color: var(--bg-primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-gold-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(200, 165, 94, 0.3);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent-gold);
+      border: 1.5px solid var(--accent-gold);
+    }
+
+    .btn-outline:hover {
+      background: rgba(200, 165, 94, 0.1);
+      border-color: var(--accent-gold-hover);
+      color: var(--accent-gold-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline:active {
+      transform: translateY(0);
+    }
+
+    /* =========================================
+       NAVIGATION
+       ========================================= */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: var(--space-md) 0;
+      transition: all var(--transition-base);
+    }
+
+    .nav.scrolled {
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-logo span {
+      color: var(--accent-gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent-gold);
+      transition: width var(--transition-base);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 0.625rem 1.5rem;
+      font-size: 0.8rem;
+      min-height: 40px;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 28px;
+      padding: 4px 0;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: all var(--transition-base);
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--space-lg);
+        background: var(--bg-surface);
+        transition: right var(--transition-base);
+        border-left: 1px solid var(--border-color);
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .nav-links a {
+        font-size: 1rem;
+      }
+    }
+
+    /* =========================================
+       HERO
+       ========================================= */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 10, 0.6) 0%,
+        rgba(10, 10, 10, 0.5) 50%,
+        rgba(10, 10, 10, 0.85) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    .hero-content h1 {
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-content h1 em {
+      font-style: italic;
+      color: var(--accent-gold);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto var(--space-lg);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: var(--space-lg);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--text-secondary);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    .scroll-indicator svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent-gold);
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* =========================================
+       TRUST BAR
+       ========================================= */
+    .trust-bar {
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: var(--space-xl) 0;
+      background: var(--bg-surface);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+      text-align: center;
+    }
+
+    .trust-item {
+      position: relative;
+    }
+
+    .trust-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 40px;
+      background: var(--border-color);
+    }
+
+    .trust-value {
+      font-family: var(--font-heading);
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 600;
+      color: var(--accent-gold);
+      margin-bottom: 0.375rem;
+    }
+
+    .trust-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg) var(--space-md);
+      }
+
+      .trust-item:not(:last-child)::after {
+        display: none;
+      }
+    }
+
+    /* =========================================
+       SECTION COMMON
+       ========================================= */
+    .section {
+      padding: var(--space-3xl) 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .section-header h2 {
+      margin-bottom: var(--space-sm);
+    }
+
+    .section-header p {
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* Gold decorative line */
+    .gold-line {
+      width: 60px;
+      height: 2px;
+      background: var(--accent-gold);
+      margin: var(--space-sm) auto;
+    }
+
+    /* =========================================
+       FEATURED CUTS — BENTO GRID
+       ========================================= */
+    .cuts-section {
+      background: var(--bg-primary);
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: var(--space-sm);
+    }
+
+    .bento-card {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+
+    .bento-card:hover {
+      border-color: var(--accent-gold);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .bento-card:nth-child(1) {
+      grid-column: 1 / 8;
+      grid-row: 1 / 3;
+    }
+
+    .bento-card:nth-child(2) {
+      grid-column: 8 / 13;
+      grid-row: 1 / 2;
+    }
+
+    .bento-card:nth-child(3) {
+      grid-column: 8 / 13;
+      grid-row: 2 / 3;
+    }
+
+    .bento-card:nth-child(4) {
+      grid-column: 1 / 5;
+      grid-row: 3 / 4;
+    }
+
+    .bento-card:nth-child(5) {
+      grid-column: 5 / 9;
+      grid-row: 3 / 4;
+    }
+
+    .bento-card:nth-child(6) {
+      grid-column: 9 / 13;
+      grid-row: 3 / 4;
+    }
+
+    .bento-card-img {
+      width: 100%;
+      height: 100%;
+      min-height: 240px;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .bento-card:nth-child(1) .bento-card-img {
+      min-height: 500px;
+    }
+
+    .bento-card:hover .bento-card-img {
+      transform: scale(1.05);
+    }
+
+    .bento-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10, 10, 10, 0.9) 0%,
+        rgba(10, 10, 10, 0.1) 60%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--space-md);
+      transition: background var(--transition-base);
+    }
+
+    .bento-card:hover .bento-card-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(10, 10, 10, 0.95) 0%,
+        rgba(10, 10, 10, 0.2) 50%
+      );
+    }
+
+    .bento-card-name {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .bento-card:nth-child(1) .bento-card-name {
+      font-size: 1.75rem;
+    }
+
+    .bento-card-meta {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .bento-card-price {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .bento-card-action {
+      position: absolute;
+      bottom: var(--space-md);
+      right: var(--space-md);
+      padding: 0.625rem 1.25rem;
+      background: var(--accent-gold);
+      color: var(--bg-primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all var(--transition-base);
+    }
+
+    .bento-card:hover .bento-card-action {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .bento-card-action:hover {
+      background: var(--accent-gold-hover);
+    }
+
+    @media (max-width: 1024px) {
+      .bento-card:nth-child(1) {
+        grid-column: 1 / 13;
+        grid-row: auto;
+      }
+
+      .bento-card:nth-child(2) {
+        grid-column: 1 / 7;
+        grid-row: auto;
+      }
+
+      .bento-card:nth-child(3) {
+        grid-column: 7 / 13;
+        grid-row: auto;
+      }
+
+      .bento-card:nth-child(4) {
+        grid-column: 1 / 5;
+        grid-row: auto;
+      }
+
+      .bento-card:nth-child(5) {
+        grid-column: 5 / 9;
+        grid-row: auto;
+      }
+
+      .bento-card:nth-child(6) {
+        grid-column: 9 / 13;
+        grid-row: auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .bento-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-sm);
+      }
+
+      .bento-card:nth-child(1) {
+        grid-column: 1 / -1;
+      }
+
+      .bento-card:nth-child(2),
+      .bento-card:nth-child(3),
+      .bento-card:nth-child(4),
+      .bento-card:nth-child(5),
+      .bento-card:nth-child(6) {
+        grid-column: auto;
+      }
+
+      .bento-card:nth-child(1) .bento-card-img {
+        min-height: 300px;
+      }
+
+      .bento-card-img {
+        min-height: 200px;
+      }
+
+      .bento-card-action {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================================
+       GRILLING PRODUCTS
+       ========================================= */
+    .grilling-section {
+      background: var(--bg-surface);
+    }
+
+    .grilling-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+    }
+
+    .grill-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all var(--transition-base);
+    }
+
+    .grill-card:hover {
+      border-color: var(--accent-gold);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+    }
+
+    .grill-card-img {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      background: #111;
+    }
+
+    .grill-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .grill-card:hover .grill-card-img img {
+      transform: scale(1.05);
+    }
+
+    .grill-card-tag {
+      position: absolute;
+      top: var(--space-sm);
+      left: var(--space-sm);
+      padding: 0.375rem 0.75rem;
+      background: var(--accent-ember);
+      color: var(--text-primary);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+    }
+
+    .grill-card-body {
+      padding: var(--space-md);
+    }
+
+    .grill-card-category {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .grill-card-name {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .grill-card-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-sm);
+    }
+
+    .grill-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--border-color);
+    }
+
+    .grill-card-price {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .grill-card-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.7rem;
+      min-height: 36px;
+    }
+
+    @media (max-width: 1024px) {
+      .grilling-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grilling-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =========================================
+       DIFFERENCE SECTION
+       ========================================= */
+    .difference-section {
+      background: var(--bg-primary);
+    }
+
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .diff-card {
+      text-align: center;
+      padding: var(--space-xl) var(--space-md);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: var(--bg-surface);
+      transition: all var(--transition-base);
+    }
+
+    .diff-card:hover {
+      border-color: var(--accent-gold);
+      transform: translateY(-2px);
+    }
+
+    .diff-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(200, 165, 94, 0.08);
+      border: 1px solid rgba(200, 165, 94, 0.15);
+    }
+
+    .diff-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--accent-gold);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .diff-card h3 {
+      margin-bottom: var(--space-sm);
+    }
+
+    .diff-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    @media (max-width: 768px) {
+      .diff-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+    }
+
+    /* =========================================
+       MEMBERSHIP CTA
+       ========================================= */
+    .membership-section {
+      padding: var(--space-3xl) 0;
+      background: var(--bg-primary);
+    }
+
+    .membership-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--accent-gold);
+      background: linear-gradient(135deg, rgba(26, 23, 20, 0.9), rgba(10, 10, 10, 0.95));
+      backdrop-filter: blur(20px);
+      padding: var(--space-3xl) var(--space-xl);
+      text-align: center;
+    }
+
+    .membership-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse at top center,
+        rgba(200, 165, 94, 0.08) 0%,
+        transparent 60%
+      );
+      pointer-events: none;
+    }
+
+    .membership-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .membership-card h2 {
+      margin-bottom: var(--space-sm);
+    }
+
+    .membership-card .desc {
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto var(--space-md);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .membership-perks {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-lg);
+    }
+
+    .perk {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .perk svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent-gold);
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .membership-card {
+        padding: var(--space-xl) var(--space-md);
+      }
+
+      .membership-perks {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+    }
+
+    /* =========================================
+       FOOTER
+       ========================================= */
+    .footer {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-color);
+      padding: var(--space-3xl) 0 var(--space-lg);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: var(--space-xl);
+      margin-bottom: var(--space-xl);
+    }
+
+    .footer-brand h4 {
+      font-size: 1.25rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer-brand h4 span {
+      color: var(--accent-gold);
+    }
+
+    .footer-brand p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      font-weight: 300;
+      max-width: 300px;
+    }
+
+    .footer-col h5 {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-col ul li a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-newsletter p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-bottom: var(--space-sm);
+      line-height: 1.6;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      transition: border-color var(--transition-fast);
+      min-height: 44px;
+    }
+
+    .newsletter-form input::placeholder {
+      color: var(--text-secondary);
+    }
+
+    .newsletter-form input:focus {
+      outline: none;
+      border-color: var(--accent-gold);
+    }
+
+    .newsletter-form button {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      min-height: 44px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: var(--space-sm);
+    }
+
+    .footer-socials a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      transition: all var(--transition-fast);
+    }
+
+    .footer-socials a:hover {
+      border-color: var(--accent-gold);
+      background: rgba(200, 165, 94, 0.1);
+    }
+
+    .footer-socials a svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--text-secondary);
+      fill: none;
+      stroke-width: 2;
+      transition: stroke var(--transition-fast);
+    }
+
+    .footer-socials a:hover svg {
+      stroke: var(--accent-gold);
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-lg);
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer-newsletter {
+        grid-column: 1 / -1;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAVIGATION ============ -->
+  <nav class="nav" role="navigation" aria-label="Navegación principal">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo" aria-label="Inicio de Meat for Kings">MEAT <span>FOR</span> KINGS</a>
+      <div class="nav-links" id="navLinks">
+        <a href="/cortes">Cortes</a>
+        <a href="/catalog">Parrilla</a>
+        <a href="#membership">Membresía</a>
+        <a href="/catalog" class="btn btn-primary nav-cta">Comprar</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1920&q=80" alt="Steak premium asándose sobre llamas abiertas" loading="eager">
+    </div>
+    <div class="hero-content">
+      <p class="section-label reveal">Desde 2018</p>
+      <h1 class="reveal reveal-delay-1">Cortes Excepcionales.<br><em>Directo a Tu Puerta.</em></h1>
+      <p class="hero-subtitle reveal reveal-delay-2">Carnes USDA Prime y de razas heritage, seleccionadas a mano y enviadas frescas por nuestros maestros carniceros.</p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#cuts" class="btn btn-primary">Ver Cortes</a>
+        <a href="/catalog" class="btn btn-outline">Explorar Parrilla</a>
+      </div>
+    </div>
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>Descubre</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============ TRUST BAR ============ -->
+  <section class="trust-bar" aria-label="Indicadores de confianza">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item reveal">
+          <div class="trust-value">USDA Prime</div>
+          <div class="trust-label">y Grados Choice</div>
+        </div>
+        <div class="trust-item reveal reveal-delay-1">
+          <div class="trust-value">48 Horas</div>
+          <div class="trust-label">Entrega Fresca</div>
+        </div>
+        <div class="trust-item reveal reveal-delay-2">
+          <div class="trust-value">Heritage</div>
+          <div class="trust-label">Razas Selectas</div>
+        </div>
+        <div class="trust-item reveal reveal-delay-3">
+          <div class="trust-value">50,000+</div>
+          <div class="trust-label">Pedidos Enviados</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED CUTS ============ -->
+  <section class="section cuts-section" id="cuts">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Selección a Mano</p>
+        <h2>La Colección</h2>
+        <div class="gold-line"></div>
+        <p>Cada corte es elegido por nuestros maestros carniceros por su excepcional marmoleo, sabor y terneza.</p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Card 1: Hero card — Ribeye -->
+        <div class="bento-card reveal">
+          <img class="bento-card-img" src="https://images.unsplash.com/photo-1615937722923-67f6deaf2cc9?auto=format&fit=crop&w=900&q=80" alt="Ribeye premium madurado en seco con marmoleo" loading="lazy">
+          <div class="bento-card-overlay">
+            <div class="bento-card-name">Ribeye Madurado en Seco</div>
+            <div class="bento-card-meta">28 días de maduración &bull; 16 oz</div>
+            <div class="bento-card-price">$68</div>
+          </div>
+          <button class="bento-card-action" aria-label="Agregar Ribeye Madurado en Seco al carrito">Agregar</button>
+        </div>
+
+        <!-- Card 2: Filet Mignon -->
+        <div class="bento-card reveal reveal-delay-1">
+          <img class="bento-card-img" src="https://images.unsplash.com/photo-1588168333986-5078d3ae3976?auto=format&fit=crop&w=600&q=80" alt="Corte tierno de filet mignon" loading="lazy">
+          <div class="bento-card-overlay">
+            <div class="bento-card-name">Filet Mignon</div>
+            <div class="bento-card-meta">Corte central &bull; 8 oz</div>
+            <div class="bento-card-price">$54</div>
+          </div>
+          <button class="bento-card-action" aria-label="Agregar Filet Mignon al carrito">Agregar</button>
+        </div>
+
+        <!-- Card 3: Wagyu Strip -->
+        <div class="bento-card reveal reveal-delay-2">
+          <img class="bento-card-img" src="https://images.unsplash.com/photo-1607116667981-987b17e7a8a3?auto=format&fit=crop&w=600&q=80" alt="Wagyu japonés A5 en tira" loading="lazy">
+          <div class="bento-card-overlay">
+            <div class="bento-card-name">Wagyu A5 en Tira</div>
+            <div class="bento-card-meta">Importado de Japón &bull; 12 oz</div>
+            <div class="bento-card-price">$128</div>
+          </div>
+          <button class="bento-card-action" aria-label="Agregar Wagyu A5 en Tira al carrito">Agregar</button>
+        </div>
+
+        <!-- Card 4: Tomahawk -->
+        <div class="bento-card reveal reveal-delay-1">
+          <img class="bento-card-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Imponente ribeye tomahawk" loading="lazy">
+          <div class="bento-card-overlay">
+            <div class="bento-card-name">Tomahawk Ribeye</div>
+            <div class="bento-card-meta">Con hueso &bull; 36 oz</div>
+            <div class="bento-card-price">$95</div>
+          </div>
+          <button class="bento-card-action" aria-label="Agregar Tomahawk Ribeye al carrito">Agregar</button>
+        </div>
+
+        <!-- Card 5: Rack of Lamb -->
+        <div class="bento-card reveal reveal-delay-2">
+          <img class="bento-card-img" src="https://images.unsplash.com/photo-1514516345957-556ca7d90a29?auto=format&fit=crop&w=600&q=80" alt="Rack de cordero estilo francés" loading="lazy">
+          <div class="bento-card-overlay">
+            <div class="bento-card-name">Rack de Cordero</div>
+            <div class="bento-card-meta">Corte francés &bull; 24 oz</div>
+            <div class="bento-card-price">$72</div>
+          </div>
+          <button class="bento-card-action" aria-label="Agregar Rack de Cordero al carrito">Agregar</button>
+        </div>
+
+        <!-- Card 6: NY Strip -->
+        <div class="bento-card reveal reveal-delay-3">
+          <img class="bento-card-img" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=600&q=80" alt="New York Strip steak" loading="lazy">
+          <div class="bento-card-overlay">
+            <div class="bento-card-name">New York Strip</div>
+            <div class="bento-card-meta">Grado Prime &bull; 14 oz</div>
+            <div class="bento-card-price">$52</div>
+          </div>
+          <button class="bento-card-action" aria-label="Agregar New York Strip al carrito">Agregar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GRILLING PRODUCTS ============ -->
+  <section class="section grilling-section" id="grilling">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Esenciales</p>
+        <h2>Equipamiento para la Parrilla</h2>
+        <div class="gold-line"></div>
+        <p>Las herramientas y el combustible que transforman una buena cocción en una experiencia inolvidable.</p>
+      </div>
+
+      <div class="grilling-grid">
+        <!-- Grill Card 1 -->
+        <div class="grill-card reveal">
+          <div class="grill-card-img">
+            <img src="https://images.unsplash.com/photo-1529262355375-c8b89b9e8c96?auto=format&fit=crop&w=600&q=80" alt="Parrilla premium estilo Kamado a carbón" loading="lazy">
+            <span class="grill-card-tag">Más Vendido</span>
+          </div>
+          <div class="grill-card-body">
+            <div class="grill-card-category">Parrillas</div>
+            <div class="grill-card-name">Parrilla Kamado Heritage</div>
+            <p class="grill-card-desc">Parrilla cerámica a carbón para sellado de precisión y ahumado lento.</p>
+            <div class="grill-card-footer">
+              <span class="grill-card-price">$1,295</span>
+              <a href="/catalog" class="btn btn-outline grill-card-btn">Ver</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grill Card 2 -->
+        <div class="grill-card reveal reveal-delay-1">
+          <div class="grill-card-img">
+            <img src="https://images.unsplash.com/photo-1585325701165-351af679cfcc?auto=format&fit=crop&w=600&q=80" alt="Set profesional de herramientas para parrilla" loading="lazy">
+          </div>
+          <div class="grill-card-body">
+            <div class="grill-card-category">Herramientas</div>
+            <div class="grill-card-name">Set Forge Master</div>
+            <p class="grill-card-desc">Pinzas, espátula y tenedor de acero inoxidable forjado a mano con mangos de nogal.</p>
+            <div class="grill-card-footer">
+              <span class="grill-card-price">$189</span>
+              <a href="/catalog" class="btn btn-outline grill-card-btn">Ver</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grill Card 3 -->
+        <div class="grill-card reveal reveal-delay-2">
+          <div class="grill-card-img">
+            <img src="https://images.unsplash.com/photo-1606756790138-261d2b21cd75?auto=format&fit=crop&w=600&q=80" alt="Variedad premium de maderas para ahumar" loading="lazy">
+          </div>
+          <div class="grill-card-body">
+            <div class="grill-card-category">Ahumado</div>
+            <div class="grill-card-name">Colección Artesanal de Ahumado</div>
+            <p class="grill-card-desc">Set curado de astillas de cerezo, nogal americano y mezquite para un sabor inigualable.</p>
+            <div class="grill-card-footer">
+              <span class="grill-card-price">$48</span>
+              <a href="/catalog" class="btn btn-outline grill-card-btn">Ver</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grill Card 4 -->
+        <div class="grill-card reveal reveal-delay-3">
+          <div class="grill-card-img">
+            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=600&q=80" alt="Sartén y plancha de hierro fundido curados" loading="lazy">
+          </div>
+          <div class="grill-card-body">
+            <div class="grill-card-category">Hierro Fundido</div>
+            <div class="grill-card-name">Set Heirloom de Hierro Fundido</div>
+            <p class="grill-card-desc">Sartén de 12" precurada y plancha reversible. Hechos para durar generaciones.</p>
+            <div class="grill-card-footer">
+              <span class="grill-card-price">$165</span>
+              <a href="/catalog" class="btn btn-outline grill-card-btn">Ver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE DIFFERENCE ============ -->
+  <section class="section difference-section" id="story">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Por Qué Elegirnos</p>
+        <h2>La Diferencia Meat for Kings</h2>
+        <div class="gold-line"></div>
+      </div>
+
+      <div class="diff-grid">
+        <div class="diff-card reveal">
+          <div class="diff-icon">
+            <!-- Butcher knife icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M14 2l-4 4-2 6 6-2 4-4"/>
+              <path d="M10 6L3 13c-1 1-1 3 1 4l4 1c1 0 2-1 3-2l6-6"/>
+              <path d="M6 16l-2 4"/>
+            </svg>
+          </div>
+          <h3>Cortes Seleccionados a Mano</h3>
+          <p>Nuestros maestros carniceros inspeccionan y seleccionan personalmente cada corte. Solo el 2% superior de la carne cumple nuestros estándares de marmoleo, color y textura.</p>
+        </div>
+
+        <div class="diff-card reveal reveal-delay-1">
+          <div class="diff-icon">
+            <!-- Snowflake / shipping icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2v20M2 12h20"/>
+              <path d="M12 2l4 4M12 2L8 6"/>
+              <path d="M12 22l4-4M12 22l-4-4"/>
+              <path d="M2 12l4 4M2 12l4-4"/>
+              <path d="M22 12l-4 4M22 12l-4-4"/>
+            </svg>
+          </div>
+          <h3>Ultra Congelado y Enviado Fresco</h3>
+          <p>Sellado al vacío en su punto óptimo de frescura y enviado en empaques aislantes con hielo seco. Tu pedido llega en 48 horas, garantizado.</p>
+        </div>
+
+        <div class="diff-card reveal reveal-delay-2">
+          <div class="diff-icon">
+            <!-- Flame icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22c-4.97 0-7-3.58-7-7 0-4 3.5-7.5 4-10.5 1 2.5 3 3 3.5 5.5C13 8 14.5 6 14 3c3 2.5 5 6.5 5 12 0 3.42-2.03 7-7 7z"/>
+              <path d="M12 22c-1.66 0-3-1.5-3-3.5 0-2 1.5-3.5 2-5 .33 1.17 1 1.67 1.17 2.83C12.33 15 13.17 14 13 13c1 1 2 2.67 2 5.5 0 2-1.34 3.5-3 3.5z"/>
+            </svg>
+          </div>
+          <h3>Pensados para la Parrilla</h3>
+          <p>Cada corte incluye las notas de parrilla de nuestros carniceros — temperatura ideal, tiempos de cocción y reposo para que logres el sellado perfecto cada vez.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MEMBERSHIP CTA ============ -->
+  <section class="section membership-section" id="membership">
+    <div class="container">
+      <div class="membership-card reveal">
+        <p class="section-label">Acceso Exclusivo</p>
+        <h2>Únete al Círculo Selecto</h2>
+        <div class="gold-line"></div>
+        <p class="desc">Una caja curada mensual con nuestros mejores cortes y esenciales para la parrilla — entregada a los miembros antes de que lleguen a la tienda.</p>
+
+        <div class="membership-perks">
+          <div class="perk">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Caja curada mensual</span>
+          </div>
+          <div class="perk">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Envío prioritario gratis</span>
+          </div>
+          <div class="perk">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Cortes exclusivos</span>
+          </div>
+          <div class="perk">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Clases de parrilla</span>
+          </div>
+        </div>
+
+        <a href="#" class="btn btn-primary">Comenzar Tu Membresía</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>MEAT <span>FOR</span> KINGS</h4>
+          <p>Cortes excepcionales y esenciales para la parrilla, para quienes no se conforman con menos. De nuestros carniceros a tu mesa.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Tienda</h5>
+          <ul>
+            <li><a href="#">Todos los Cortes</a></li>
+            <li><a href="#">Res</a></li>
+            <li><a href="#">Cordero</a></li>
+            <li><a href="#">Wagyu</a></li>
+            <li><a href="/catalog">Equipamiento</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Empresa</h5>
+          <ul>
+            <li><a href="#">Nuestra Historia</a></li>
+            <li><a href="#">Origen</a></li>
+            <li><a href="#">Membresía</a></li>
+            <li><a href="#">Tarjetas de Regalo</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-newsletter">
+          <h5>Mantente al Día</h5>
+          <p>Acceso anticipado a nuevos cortes, tips de parrilla y ofertas exclusivas para miembros.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value = ''; alert('¡Gracias por suscribirte!');">
+            <input type="email" placeholder="Ingresa tu correo electrónico" aria-label="Correo electrónico para el boletín" required>
+            <button type="submit" class="btn btn-primary">Suscribirse</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Meat for Kings. Todos los derechos reservados.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24"><path d="M4 4l11.733 16H20L8.267 4z"/><path d="M4 20l6.768-6.768M15.232 10.768L20 4"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script>
+    // ---- Navigation scroll behavior ----
+    const nav = document.querySelector('.nav');
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // ---- Mobile menu toggle ----
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('active');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ---- Scroll-triggered reveal animations ----
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+  </script>
+</body>
+</html>
