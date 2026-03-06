@@ -2,7 +2,7 @@
 
 A professional web catalog **in Spanish** for browsing **1,505 grill products** across 11 categories, scraped from BBQGuys.com and translated to Spanish. Warm luxury design, fast filtering, infinite scroll, and detailed product modals.
 
-**Live:** https://meat-for-kings.onrender.com/
+**Live:** https://meat-for-kings-production.up.railway.app
 
 ![Stack](https://img.shields.io/badge/Flask-SQLite-blue) ![Products](https://img.shields.io/badge/Products-1505-gold) ![Brands](https://img.shields.io/badge/Brands-108-green) ![Language](https://img.shields.io/badge/Idioma-Español-red)
 
@@ -36,13 +36,13 @@ The server creates SQLite indexes on first run for fast queries.
 
 ## Deployment
 
-Hosted on [Render](https://render.com) (free tier). Every push to `main` triggers an automatic redeploy via Render's GitHub integration.
+Hosted on [Railway](https://railway.app). Every push to `main` triggers an automatic redeploy via Railway's GitHub integration.
 
 | Detail | Value |
 |--------|-------|
-| Platform | Render (free web service) |
+| Platform | Railway |
 | Server | gunicorn |
-| Config | `render.yaml` (Render Blueprint) |
+| Config | `render.yaml` |
 | Auto-deploy | Yes — on push to `main` |
 
 ## Project Structure
@@ -52,7 +52,7 @@ Meat for Kings/
 ├── app.py                  # Flask server (3 pages + JSON API)
 ├── catalog-es.db           # SQLite database (1,505 products, Spanish)
 ├── scrape.py               # Playwright scraper (standalone)
-├── render.yaml             # Render deployment config
+├── render.yaml             # Deployment config (build/start commands)
 ├── requirements.txt        # flask, gunicorn
 ├── CLAUDE.md               # Claude Code context file
 ├── static/
@@ -96,6 +96,7 @@ Paginated product list with filtering and sorting.
 | `min_price` | int | — | Minimum price in cents |
 | `max_price` | int | — | Maximum price in cents |
 | `in_stock` | string | — | `1` or `true` for in-stock only |
+| `category` | string | — | Comma-separated category names |
 | `has_rating` | string | — | `1` or `true` for rated products only |
 
 ```json

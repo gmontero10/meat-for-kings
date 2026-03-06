@@ -2,7 +2,7 @@
 
 Grill product catalog web app **in Spanish**. 1,505 products across 11 categories scraped from BBQGuys.com and translated to Spanish.
 
-**Live site:** https://meat-for-kings.onrender.com/
+**Live site:** https://meat-for-kings-production.up.railway.app
 
 ## Quick Start
 
@@ -13,14 +13,14 @@ python3 app.py          # http://localhost:8000
 
 ## Deployment
 
-Hosted on **Render** (free tier). Auto-deploys on every push to `main` via Render's GitHub integration.
+Hosted on **Railway**. Auto-deploys on every push to `main` via Railway's GitHub integration.
 
 - **Repo:** https://github.com/gmontero10/meat-for-kings
-- **Config:** `render.yaml` (Render Blueprint)
+- **Config:** `render.yaml` (also used by Railway for build/start commands)
 - **Production server:** gunicorn (`gunicorn app:app --bind 0.0.0.0:$PORT`)
 - **Build command:** `pip install -r requirements.txt && python -c "from app import ensure_indexes; ensure_indexes()"`
 
-The SQLite DB is read-only at runtime and ships with each deploy. Render's free tier filesystem is ephemeral, which is fine since we never write to the DB.
+The SQLite DB is read-only at runtime and ships with each deploy.
 
 ## Architecture
 
@@ -35,7 +35,7 @@ The SQLite DB is read-only at runtime and ships with each deploy. Render's free 
 | `static/js/app.js` | IIFE-wrapped SPA — state, API calls, rendering, events (catalog only) |
 | `static/css/style.css` | Catalog design system with CSS custom properties |
 | `catalog-es.db` | SQLite, single `products` table, Spanish-translated, read-only at runtime |
-| `render.yaml` | Render Blueprint — build/start commands, free tier |
+| `render.yaml` | Deployment config — build/start commands (used by Railway) |
 | `scrape.py` | Playwright scraper (standalone, do not modify) |
 
 ## Database
@@ -53,9 +53,9 @@ Seven indexes exist: `idx_brand`, `idx_price`, `idx_fuel`, `idx_stock`, `idx_rat
 - `GET /` — serves home.html (dark luxury landing page)
 - `GET /cortes` — serves cuts_menu-es.html (meat cuts menu with category filtering)
 - `GET /catalog` — serves catalog.html (product catalog with filters, search, infinite scroll)
-- `GET /api/filters` — brands list, fuel types, price range, total count
+- `GET /api/filters` — brands list, fuel types, categories list, price range, total count
 - `GET /api/products` — paginated, filtered, sorted product list (16 card-display fields)
-  - Params: `page`, `per_page`(36), `sort`, `search`, `brand`(comma-sep), `fuel_type`(comma-sep), `min_price`, `max_price`, `in_stock`, `has_rating`
+  - Params: `page`, `per_page`(36), `sort`, `search`, `brand`(comma-sep), `fuel_type`(comma-sep), `category`(comma-sep), `min_price`, `max_price`, `in_stock`, `has_rating`
   - Sort values: `price_asc`, `price_desc`, `name_asc`, `rating_desc`, `savings_desc`
 - `GET /api/products/<id>` — full product detail, parses `bullet_points` JSON
 
@@ -89,4 +89,4 @@ Warm luxury palette with gold accent (`#C8963E`). Fonts: Playfair Display (headi
 - Add a build step or framework — this is intentionally vanilla
 - Remove the `escapeHtml()` / `sanitizeHtml()` calls (XSS protection)
 - Use port 5000 (blocked by macOS AirPlay Receiver)
-- Remove `gunicorn` from requirements.txt (needed for production on Render)
+- Remove `gunicorn` from requirements.txt (needed for production on Railway)
