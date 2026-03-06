@@ -141,12 +141,13 @@ input, select {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: var(--fs-xl);
-  color: #FFFFFF;
+  color: var(--gold);
   letter-spacing: -0.01em;
 }
 
-.logo-text::first-letter {
-  color: var(--gold);
+.logo-text .logo-for {
+  color: #FFFFFF;
+  font-weight: 700;
 }
 
 /* Header controls */
