@@ -78,7 +78,7 @@ FLAGSHIP_SQL = """
 # When set, the home route uses these exact products (in this order)
 # instead of the automatic flagship SQL.
 GRILLING_PINNED = {
-    "kamado": ["3184378", "3133584", "3072664"],
+    "kamado": ["3184378", "3133584", "3071071"],
 }
 
 PINNED_SQL = """
