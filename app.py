@@ -74,13 +74,34 @@ FLAGSHIP_SQL = """
     LIMIT 3
 """
 
+# Manual overrides: ordered list of product IDs per category slug.
+# When set, the home route uses these exact products (in this order)
+# instead of the automatic flagship SQL.
+GRILLING_PINNED = {
+    "kamado": ["3184378", "3133584", "3072664"],
+}
+
+PINNED_SQL = """
+    SELECT id, name, brand, category, price_formatted,
+           rating, review_count, image_url
+    FROM products
+    WHERE id = ?
+"""
+
 
 @app.route("/")
 def home():
     db = get_db()
     featured = []
     for slug, category, label, tagline in GRILLING_CATEGORIES:
-        rows = db.execute(FLAGSHIP_SQL, (category,)).fetchall()
+        if slug in GRILLING_PINNED:
+            rows = []
+            for pid in GRILLING_PINNED[slug]:
+                row = db.execute(PINNED_SQL, (pid,)).fetchone()
+                if row is not None:
+                    rows.append(row)
+        else:
+            rows = db.execute(FLAGSHIP_SQL, (category,)).fetchall()
         products = []
         for r in rows:
             d = dict(r)

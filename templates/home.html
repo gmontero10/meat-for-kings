@@ -912,6 +912,14 @@
       font-size: 0.78rem;
     }
 
+    .parrilla-card-rating.muted-only {
+      color: var(--text-secondary);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
     .parrilla-card-price {
       font-family: var(--font-heading);
       font-size: 1.1rem;
@@ -1515,11 +1523,15 @@
           <div class="parrilla-card-body">
             <h3 class="parrilla-card-name">{{ p.display_name }}</h3>
             <div class="parrilla-card-meta">
+              {% if p.review_count and p.review_count > 0 %}
               <span class="parrilla-card-rating">
                 <svg class="star" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 .8 7.6 4l3.5.5-2.5 2.5.6 3.5L6 8.9 2.8 10.5l.6-3.5L.9 4.5 4.4 4z"/></svg>
                 {{ '%.1f'|format(p.rating) }}
-                {% if p.review_count %}<span class="muted">({{ p.review_count }})</span>{% endif %}
+                <span class="muted">({{ p.review_count }})</span>
               </span>
+              {% else %}
+              <span class="parrilla-card-rating muted-only">Nuevo</span>
+              {% endif %}
               <span class="parrilla-card-price">{{ p.price_formatted }}</span>
             </div>
           </div>
