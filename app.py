@@ -53,9 +53,47 @@ def ensure_indexes():
 # Routes
 # ---------------------------------------------------------------------------
 
+GRILLING_CATEGORIES = [
+    ("kamado",   "Parrillas Kamado",     "Kamado",          "Cerámica, calor radiante."),
+    ("ahumador", "Ahumadores",           "Ahumador",        "Humo lento, sabor profundo."),
+    ("pellet",   "Parrillas de Pellets", "Pellets",         "Madera real, control digital."),
+    ("pizza",    "Hornos de Pizza",      "Horno de Pizza",  "Calor napolitano en casa."),
+]
+
+FLAGSHIP_SQL = """
+    SELECT id, name, brand, category, price_formatted,
+           rating, review_count, image_url
+    FROM products
+    WHERE category = ?
+      AND stock_status = 'IN_STOCK'
+      AND image_url IS NOT NULL
+      AND rating IS NOT NULL
+      AND price_current IS NOT NULL
+      AND review_count >= 5
+    ORDER BY rating DESC, review_count DESC, price_current DESC
+    LIMIT 3
+"""
+
+
 @app.route("/")
 def home():
-    return render_template("home.html")
+    db = get_db()
+    featured = []
+    for slug, category, label, tagline in GRILLING_CATEGORIES:
+        rows = db.execute(FLAGSHIP_SQL, (category,)).fetchall()
+        products = []
+        for r in rows:
+            d = dict(r)
+            d["display_name"] = d["name"].split(" - ")[0].strip()
+            products.append(d)
+        featured.append({
+            "slug": slug,
+            "category": category,
+            "label": label,
+            "tagline": tagline,
+            "products": products,
+        })
+    return render_template("home.html", grilling_featured=featured)
 
 
 @app.route("/catalog")
