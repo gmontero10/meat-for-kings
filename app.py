@@ -80,7 +80,7 @@ FLAGSHIP_SQL = """
 # instead of the automatic flagship SQL.
 GRILLING_PINNED = {
     "kamado": ["3184378", "3133584", "3071071"],
-    "carbon": ["3159015", "3158865", "2908774"],
+    "carbon": ["3159015", "2894738", "2908774"],
     "gas":    ["3198455", "3200204", "3075598"],
 }
 
