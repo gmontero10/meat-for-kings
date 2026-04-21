@@ -1505,7 +1505,7 @@
           <div class="parrilla-card-body">
             <h3 class="parrilla-card-name">{{ p.display_name }}</h3>
             <div class="parrilla-card-meta">
-              {% if p.review_count and p.review_count > 0 %}
+              {% if p.rating is not none and p.rating > 0 and p.review_count and p.review_count > 0 %}
               <span class="parrilla-card-rating">
                 <svg class="star" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 .8 7.6 4l3.5.5-2.5 2.5.6 3.5L6 8.9 2.8 10.5l.6-3.5L.9 4.5 4.4 4z"/></svg>
                 {{ '%.1f'|format(p.rating) }}
