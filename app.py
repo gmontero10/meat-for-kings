@@ -54,10 +54,10 @@ def ensure_indexes():
 # ---------------------------------------------------------------------------
 
 GRILLING_CATEGORIES = [
-    ("kamado",   "Parrillas Kamado",     "Kamado",          "Cerámica, calor radiante."),
-    ("ahumador", "Ahumadores",           "Ahumador",        "Humo lento, sabor profundo."),
     ("carbon",   "Parrillas de Carbón",  "Carbón",          "Fuego vivo, sabor clásico."),
     ("gas",      "Parrillas de Gas",     "Gas",             "Calor preciso, listo al instante."),
+    ("kamado",   "Parrillas Kamado",     "Kamado",          "Cerámica, calor radiante."),
+    ("ahumador", "Ahumadores",           "Ahumador",        "Humo lento, sabor profundo."),
     ("pizza",    "Hornos de Pizza",      "Horno de Pizza",  "Calor napolitano en casa."),
 ]
 
