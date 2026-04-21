@@ -548,209 +548,125 @@
       background: var(--bg-primary);
     }
 
-    .bento-grid {
+    .coleccion-grid {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: auto;
-      gap: var(--space-sm);
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
     }
 
-    .bento-card {
-      position: relative;
-      border-radius: var(--radius-md);
-      overflow: hidden;
+    .coleccion-card {
+      display: block;
       background: var(--bg-surface);
       border: 1px solid var(--border-color);
-      cursor: pointer;
-      transition: all var(--transition-base);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color var(--transition-base), transform var(--transition-base);
     }
 
-    .bento-card:hover {
+    .coleccion-card:hover {
       border-color: var(--accent-gold);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      transform: translateY(-2px);
     }
 
-    .bento-card:nth-child(1) {
-      grid-column: 1 / 8;
-      grid-row: 1 / 3;
+    .coleccion-card-media {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--bg-surface);
     }
 
-    .bento-card:nth-child(2) {
-      grid-column: 8 / 13;
-      grid-row: 1 / 2;
-    }
-
-    .bento-card:nth-child(3) {
-      grid-column: 8 / 13;
-      grid-row: 2 / 3;
-    }
-
-    .bento-card:nth-child(4) {
-      grid-column: 1 / 5;
-      grid-row: 3 / 4;
-    }
-
-    .bento-card:nth-child(5) {
-      grid-column: 5 / 9;
-      grid-row: 3 / 4;
-    }
-
-    .bento-card:nth-child(6) {
-      grid-column: 9 / 13;
-      grid-row: 3 / 4;
-    }
-
-    .bento-card-img {
+    .coleccion-card-media img {
       width: 100%;
       height: 100%;
-      min-height: 240px;
       object-fit: cover;
       transition: transform var(--transition-slow);
     }
 
-    .bento-card:nth-child(1) .bento-card-img {
-      min-height: 500px;
+    .coleccion-card:hover .coleccion-card-media img {
+      transform: scale(1.04);
     }
 
-    .bento-card:hover .bento-card-img {
-      transform: scale(1.05);
-    }
-
-    .bento-card-overlay {
+    .coleccion-card-tag {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(10, 10, 10, 0.9) 0%,
-        rgba(10, 10, 10, 0.1) 60%
-      );
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: var(--space-md);
-      transition: background var(--transition-base);
-    }
-
-    .bento-card:hover .bento-card-overlay {
-      background: linear-gradient(
-        to top,
-        rgba(10, 10, 10, 0.95) 0%,
-        rgba(10, 10, 10, 0.2) 50%
-      );
-    }
-
-    .bento-card-name {
-      font-family: var(--font-heading);
-      font-size: 1.25rem;
+      top: var(--space-sm);
+      left: var(--space-sm);
+      padding: 0.25rem 0.625rem;
+      font-size: 0.65rem;
       font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-
-    .bento-card:nth-child(1) .bento-card-name {
-      font-size: 1.75rem;
-    }
-
-    .bento-card-meta {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.5rem;
-    }
-
-    .bento-card-price {
-      font-family: var(--font-heading);
-      font-size: 1.1rem;
-      color: var(--accent-gold);
-      font-weight: 600;
-    }
-
-    .bento-card-action {
-      position: absolute;
-      bottom: var(--space-md);
-      right: var(--space-md);
-      padding: 0.625rem 1.25rem;
-      background: var(--accent-gold);
-      color: var(--bg-primary);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       border-radius: var(--radius-sm);
-      opacity: 0;
-      transform: translateY(8px);
-      transition: all var(--transition-base);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
 
-    .bento-card:hover .bento-card-action {
-      opacity: 1;
-      transform: translateY(0);
+    .coleccion-card-tag.is-wagyu {
+      color: var(--accent-gold);
+      border: 1px solid var(--accent-gold);
+      background: rgba(10, 10, 10, 0.55);
     }
 
-    .bento-card-action:hover {
-      background: var(--accent-gold-hover);
+    .coleccion-card-tag.is-a5 {
+      color: var(--text-primary);
+      border: 1px solid var(--text-primary);
+      background: rgba(10, 10, 10, 0.55);
     }
 
-    @media (max-width: 1024px) {
-      .bento-card:nth-child(1) {
-        grid-column: 1 / 13;
-        grid-row: auto;
+    .coleccion-card-tag.is-premium {
+      color: var(--bg-primary);
+      border: 1px solid var(--accent-gold);
+      background: var(--accent-gold);
+    }
+
+    .coleccion-card-body {
+      padding: var(--space-sm) var(--space-md) var(--space-md);
+    }
+
+    .coleccion-card-name {
+      font-family: var(--font-heading);
+      font-size: 1.125rem;
+      font-weight: 500;
+      line-height: 1.3;
+      margin-bottom: 0.3rem;
+    }
+
+    .coleccion-card-cat {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .coleccion-cta {
+      margin-top: var(--space-xl);
+      text-align: center;
+    }
+
+    @media (max-width: 1199px) {
+      .coleccion-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-sm);
       }
 
-      .bento-card:nth-child(2) {
-        grid-column: 1 / 7;
-        grid-row: auto;
-      }
-
-      .bento-card:nth-child(3) {
-        grid-column: 7 / 13;
-        grid-row: auto;
-      }
-
-      .bento-card:nth-child(4) {
-        grid-column: 1 / 5;
-        grid-row: auto;
-      }
-
-      .bento-card:nth-child(5) {
-        grid-column: 5 / 9;
-        grid-row: auto;
-      }
-
-      .bento-card:nth-child(6) {
-        grid-column: 9 / 13;
-        grid-row: auto;
+      .coleccion-card:nth-child(n+7) {
+        display: none;
       }
     }
 
     @media (max-width: 768px) {
-      .bento-grid {
-        grid-template-columns: 1fr 1fr;
+      .coleccion-grid {
+        grid-template-columns: repeat(2, 1fr);
         gap: var(--space-sm);
       }
 
-      .bento-card:nth-child(1) {
-        grid-column: 1 / -1;
+      .coleccion-card-media {
+        aspect-ratio: 4 / 5;
       }
 
-      .bento-card:nth-child(2),
-      .bento-card:nth-child(3),
-      .bento-card:nth-child(4),
-      .bento-card:nth-child(5),
-      .bento-card:nth-child(6) {
-        grid-column: auto;
-      }
-
-      .bento-card:nth-child(1) .bento-card-img {
-        min-height: 300px;
-      }
-
-      .bento-card-img {
-        min-height: 200px;
-      }
-
-      .bento-card-action {
-        opacity: 1;
-        transform: translateY(0);
+      .coleccion-card-body {
+        padding: var(--space-sm);
       }
     }
 
@@ -1273,72 +1189,98 @@
         <p>Cada corte es elegido por nuestros maestros carniceros por su excepcional marmoleo, sabor y terneza.</p>
       </div>
 
-      <div class="bento-grid">
-        <!-- Card 1: Hero card — Ribeye -->
-        <div class="bento-card reveal">
-          <img class="bento-card-img" src="https://images.unsplash.com/photo-1615937722923-67f6deaf2cc9?auto=format&fit=crop&w=900&q=80" alt="Ribeye premium madurado en seco con marmoleo" loading="lazy">
-          <div class="bento-card-overlay">
-            <div class="bento-card-name">Ribeye Madurado en Seco</div>
-            <div class="bento-card-meta">28 días de maduración &bull; 16 oz</div>
-            <div class="bento-card-price">$68</div>
+      <div class="coleccion-grid">
+        <a href="/cortes" class="coleccion-card reveal">
+          <div class="coleccion-card-media">
+            <img src="/static/images/tomahawks_wagyu.jpg" alt="Tomahawk Wagyu Australiano ICON" width="800" height="1067" loading="eager" fetchpriority="high" decoding="async">
+            <span class="coleccion-card-tag is-wagyu">Wagyu</span>
           </div>
-          <button class="bento-card-action" aria-label="Agregar Ribeye Madurado en Seco al carrito">Agregar</button>
-        </div>
+          <div class="coleccion-card-body">
+            <h3 class="coleccion-card-name">Tomahawk Wagyu</h3>
+            <p class="coleccion-card-cat">Australiano ICON</p>
+          </div>
+        </a>
 
-        <!-- Card 2: Filet Mignon -->
-        <div class="bento-card reveal reveal-delay-1">
-          <img class="bento-card-img" src="https://images.unsplash.com/photo-1588168333986-5078d3ae3976?auto=format&fit=crop&w=600&q=80" alt="Corte tierno de filet mignon" loading="lazy">
-          <div class="bento-card-overlay">
-            <div class="bento-card-name">Filet Mignon</div>
-            <div class="bento-card-meta">Corte central &bull; 8 oz</div>
-            <div class="bento-card-price">$54</div>
+        <a href="/cortes" class="coleccion-card reveal reveal-delay-1">
+          <div class="coleccion-card-media">
+            <img src="/static/images/wagyu_ribeye_steak@600.jpg" alt="Ribeye Wagyu Hannari A5" width="800" height="1067" loading="lazy" decoding="async">
+            <span class="coleccion-card-tag is-a5">Wagyu A5</span>
           </div>
-          <button class="bento-card-action" aria-label="Agregar Filet Mignon al carrito">Agregar</button>
-        </div>
+          <div class="coleccion-card-body">
+            <h3 class="coleccion-card-name">Ribeye Hannari</h3>
+            <p class="coleccion-card-cat">A5 Japonés</p>
+          </div>
+        </a>
 
-        <!-- Card 3: Wagyu Strip -->
-        <div class="bento-card reveal reveal-delay-2">
-          <img class="bento-card-img" src="https://images.unsplash.com/photo-1607116667981-987b17e7a8a3?auto=format&fit=crop&w=600&q=80" alt="Wagyu japonés A5 en tira" loading="lazy">
-          <div class="bento-card-overlay">
-            <div class="bento-card-name">Wagyu A5 en Tira</div>
-            <div class="bento-card-meta">Importado de Japón &bull; 12 oz</div>
-            <div class="bento-card-price">$128</div>
+        <a href="/cortes" class="coleccion-card reveal reveal-delay-2">
+          <div class="coleccion-card-media">
+            <img src="/static/images/A5_Wagyu_Beef_Striploin_Steak.jpg" alt="Punta Trasera Wagyu A5 KOBE" width="800" height="1067" loading="lazy" decoding="async">
+            <span class="coleccion-card-tag is-a5">Wagyu A5</span>
           </div>
-          <button class="bento-card-action" aria-label="Agregar Wagyu A5 en Tira al carrito">Agregar</button>
-        </div>
+          <div class="coleccion-card-body">
+            <h3 class="coleccion-card-name">Punta Trasera</h3>
+            <p class="coleccion-card-cat">A5 KOBE</p>
+          </div>
+        </a>
 
-        <!-- Card 4: Tomahawk -->
-        <div class="bento-card reveal reveal-delay-1">
-          <img class="bento-card-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Imponente ribeye tomahawk" loading="lazy">
-          <div class="bento-card-overlay">
-            <div class="bento-card-name">Tomahawk Ribeye</div>
-            <div class="bento-card-meta">Con hueso &bull; 36 oz</div>
-            <div class="bento-card-price">$95</div>
+        <a href="/cortes" class="coleccion-card reveal reveal-delay-3">
+          <div class="coleccion-card-media">
+            <img src="/static/images/ribeye_wagyu_intoku@600.jpg" alt="Ribeye INTOKU Grandmaster" width="800" height="1067" loading="lazy" decoding="async">
+            <span class="coleccion-card-tag is-wagyu">Wagyu</span>
           </div>
-          <button class="bento-card-action" aria-label="Agregar Tomahawk Ribeye al carrito">Agregar</button>
-        </div>
+          <div class="coleccion-card-body">
+            <h3 class="coleccion-card-name">Ribeye INTOKU</h3>
+            <p class="coleccion-card-cat">Grandmaster</p>
+          </div>
+        </a>
 
-        <!-- Card 5: Rack of Lamb -->
-        <div class="bento-card reveal reveal-delay-2">
-          <img class="bento-card-img" src="https://images.unsplash.com/photo-1514516345957-556ca7d90a29?auto=format&fit=crop&w=600&q=80" alt="Rack de cordero estilo francés" loading="lazy">
-          <div class="bento-card-overlay">
-            <div class="bento-card-name">Rack de Cordero</div>
-            <div class="bento-card-meta">Corte francés &bull; 24 oz</div>
-            <div class="bento-card-price">$72</div>
+        <a href="/cortes" class="coleccion-card reveal reveal-delay-1">
+          <div class="coleccion-card-media">
+            <img src="/static/images/tomahawk@600.jpg" alt="Tomahawk Angus Premium" width="800" height="1067" loading="lazy" decoding="async">
+            <span class="coleccion-card-tag is-premium">Premium</span>
           </div>
-          <button class="bento-card-action" aria-label="Agregar Rack de Cordero al carrito">Agregar</button>
-        </div>
+          <div class="coleccion-card-body">
+            <h3 class="coleccion-card-name">Tomahawk</h3>
+            <p class="coleccion-card-cat">Angus Premium</p>
+          </div>
+        </a>
 
-        <!-- Card 6: NY Strip -->
-        <div class="bento-card reveal reveal-delay-3">
-          <img class="bento-card-img" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=600&q=80" alt="New York Strip steak" loading="lazy">
-          <div class="bento-card-overlay">
-            <div class="bento-card-name">New York Strip</div>
-            <div class="bento-card-meta">Grado Prime &bull; 14 oz</div>
-            <div class="bento-card-price">$52</div>
+        <a href="/cortes" class="coleccion-card reveal reveal-delay-2">
+          <div class="coleccion-card-media">
+            <img src="/static/images/lomo_entero@600.jpg" alt="Lomo Entero corte tradicional" width="800" height="1067" loading="lazy" decoding="async">
+            <span class="coleccion-card-tag is-premium">Premium</span>
           </div>
-          <button class="bento-card-action" aria-label="Agregar New York Strip al carrito">Agregar</button>
-        </div>
+          <div class="coleccion-card-body">
+            <h3 class="coleccion-card-name">Lomo Entero</h3>
+            <p class="coleccion-card-cat">Corte Tradicional</p>
+          </div>
+        </a>
+
+        <a href="/cortes" class="coleccion-card reveal reveal-delay-3">
+          <div class="coleccion-card-media">
+            <img src="/static/images/t-bone_res.jpg" alt="T-Bone con hueso" width="800" height="1067" loading="lazy" decoding="async">
+            <span class="coleccion-card-tag is-premium">Premium</span>
+          </div>
+          <div class="coleccion-card-body">
+            <h3 class="coleccion-card-name">T-Bone</h3>
+            <p class="coleccion-card-cat">Con Hueso</p>
+          </div>
+        </a>
+
+        <a href="/cortes" class="coleccion-card reveal reveal-delay-1">
+          <div class="coleccion-card-media">
+            <img src="/static/images/Hannari_Wagyu_Chuck_Flap_A5.JPG" alt="Flat Iron INTOKU A5" width="800" height="1067" loading="lazy" decoding="async">
+            <span class="coleccion-card-tag is-wagyu">Wagyu</span>
+          </div>
+          <div class="coleccion-card-body">
+            <h3 class="coleccion-card-name">Flat Iron</h3>
+            <p class="coleccion-card-cat">INTOKU A5</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="coleccion-cta reveal">
+        <a href="/cortes" class="btn btn-outline">Ver Todos los Cortes</a>
       </div>
     </div>
   </section>
