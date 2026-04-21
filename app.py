@@ -56,7 +56,7 @@ def ensure_indexes():
 GRILLING_CATEGORIES = [
     ("kamado",   "Parrillas Kamado",     "Kamado",          "Cerámica, calor radiante."),
     ("ahumador", "Ahumadores",           "Ahumador",        "Humo lento, sabor profundo."),
-    ("pellet",   "Parrillas de Pellets", "Pellets",         "Madera real, control digital."),
+    ("carbon",   "Parrillas de Carbón",  "Carbón",          "Fuego vivo, sabor clásico."),
     ("pizza",    "Hornos de Pizza",      "Horno de Pizza",  "Calor napolitano en casa."),
 ]
 
@@ -79,6 +79,7 @@ FLAGSHIP_SQL = """
 # instead of the automatic flagship SQL.
 GRILLING_PINNED = {
     "kamado": ["3184378", "3133584", "3071071"],
+    "carbon": ["3159015", "3158865", "2908774"],
 }
 
 PINNED_SQL = """
